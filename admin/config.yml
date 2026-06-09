@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: ForzaEmlak/emlak-sitesi
   branch: main
 
 media_folder: "assets/ilanlar"
