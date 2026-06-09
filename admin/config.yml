@@ -3,6 +3,10 @@ backend:
   repo: ForzaEmlak/emlak-sitesi
   branch: main
 
+site_url: https://forzagayrimenkul.com.tr
+display_url: https://forzagayrimenkul.com.tr
+logo_url: https://forzagayrimenkul.com.tr/assets/logo-header.png
+
 media_folder: "assets/ilanlar"
 public_folder: "assets/ilanlar"
 locale: "tr"
