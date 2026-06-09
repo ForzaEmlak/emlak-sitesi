@@ -93,13 +93,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: relative; z-index: 1;
   display: flex; align-items: center; justify-content: space-between;
   width: min(94%, 1360px); margin-inline: auto;
-  height: 320px; transition: height .4s var(--ease);
+  height: auto; padding-block: 14px; transition: padding .4s var(--ease);
 }
-.site-header.scrolled .header-inner { height: 116px; }
+.site-header.scrolled .header-inner { padding-block: 8px; }
 
 .logo { display: flex; align-items: center; }
-.logo-img { height: 290px; width: auto; display: block; transition: height .4s var(--ease); }
-.site-header.scrolled .logo-img { height: 96px; }
+.logo-img { height: clamp(68px, 7.5vw, 128px); width: auto; display: block; transition: height .4s var(--ease); }
+.site-header.scrolled .logo-img { height: clamp(50px, 4.6vw, 74px); }
 
 .main-nav { display: flex; align-items: center; gap: 34px; }
 .main-nav a {
@@ -424,8 +424,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 @media (max-width: 860px) {
   .nav-toggle { display: flex; }
-  .header-inner, .site-header.scrolled .header-inner { height: 92px; }
-  .logo-img, .site-header.scrolled .logo-img { height: 72px; }
+  .logo-img, .site-header.scrolled .logo-img { height: 58px; }
   .site-header, .site-header.scrolled { backdrop-filter: none; background: rgba(10,9,8,.96); }
   .main-nav {
     position: fixed; inset: 0 0 0 auto; width: min(82%, 340px);
