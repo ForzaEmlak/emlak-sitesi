@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Forza — Logo Seçenekleri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Playfair+Display:wght@600;700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Inter",sans-serif;background:#f4f4f5;color:#0a0a0a;padding:40px 24px}
+  h1{font-family:"Cormorant Garamond",serif;font-size:2.4rem;text-align:center;font-weight:600}
+  .sub{text-align:center;color:#6b6b70;margin:8px 0 36px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:1000px;margin:0 auto}
+  .card{background:#fff;border:1px solid #e4e4e7;border-radius:16px;overflow:hidden}
+  .num{position:absolute;margin:14px;background:#0a0a0a;color:#fff;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px}
+  .stage{height:180px;display:grid;place-items:center;padding:20px}
+  .stage.dark{background:#0a0a0a}
+  .cap{border-top:1px solid #eee;padding:14px 20px;font-size:14px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+  .cap small{color:#6b6b70;font-weight:400}
+
+  /* lockup helpers */
+  .lock{display:flex;align-items:center;gap:14px}
+  .lock .wm{display:flex;flex-direction:column;line-height:1}
+  .lock .wm b{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:600;letter-spacing:4px}
+  .lock .wm span{font-size:9px;letter-spacing:4px;color:#6b6b70;margin-top:5px}
+  .dark .lock .wm b{color:#fff}
+  .dark .lock .wm span{color:#a8a8ad}
+  svg{display:block}
+
+  /* wordmark only */
+  .wordmark{text-align:center}
+  .wordmark .rule{display:flex;align-items:center;gap:12px;justify-content:center;color:#0a0a0a}
+  .wordmark .rule::before,.wordmark .rule::after{content:"";height:1px;width:46px;background:currentColor}
+  .wordmark .rule span{font-size:11px;letter-spacing:6px;font-weight:500}
+  .wordmark h2{font-family:"Cormorant Garamond",serif;font-size:52px;font-weight:600;letter-spacing:8px;margin:10px 0}
+  .wordmark .est{font-size:10px;letter-spacing:5px;color:#6b6b70}
+</style>
+</head>
+<body>
+  <h1>Forza — Logo Seçenekleri</h1>
+  <p class="sub">Beğendiğin numarayı söyle; onu siteye uygularım. (İstersen ince ayar da yaparım.)</p>
+
+  <div class="grid">
+
+    <!-- 1 — Wordmark only -->
+    <div class="card">
+      <span class="num">1</span>
+      <div class="stage">
+        <div class="wordmark">
+          <div class="rule"><span>REAL ESTATE</span></div>
+          <h2>FORZA</h2>
+          <div class="est">İSTANBUL · EMLAK</div>
+        </div>
+      </div>
+      <div class="cap">Saf wordmark <small>en sade & lüks</small></div>
+    </div>
+
+    <!-- 2 — Serif F in rounded square -->
+    <div class="card">
+      <span class="num">2</span>
+      <div class="stage dark">
+        <div class="lock">
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="#fff" stroke-width="2.5"/>
+            <text x="32" y="46" font-family="Cormorant Garamond,serif" font-size="44" font-weight="600" text-anchor="middle" fill="#fff">F</text>
+          </svg>
+          <div class="wm"><b>FORZA</b><span>REAL ESTATE · İSTANBUL</span></div>
+        </div>
+      </div>
+      <div class="cap">Serif “F” monogram (çerçeveli) <small>klasik kurumsal</small></div>
+    </div>
+
+    <!-- 3 — Serif F in circle -->
+    <div class="card">
+      <span class="num">3</span>
+      <div class="stage dark">
+        <div class="lock">
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="29" fill="none" stroke="#fff" stroke-width="2.5"/>
+            <text x="32" y="45" font-family="Playfair Display,serif" font-size="40" font-weight="700" text-anchor="middle" fill="#fff">F</text>
+          </svg>
+          <div class="wm"><b>FORZA</b><span>REAL ESTATE · İSTANBUL</span></div>
+        </div>
+      </div>
+      <div class="cap">Serif “F” (daire mühür) <small>prestijli amblem</small></div>
+    </div>
+
+    <!-- 4 — FR monogram interlocked -->
+    <div class="card">
+      <span class="num">4</span>
+      <div class="stage dark">
+        <div class="lock">
+          <svg width="68" height="64" viewBox="0 0 68 64">
+            <text x="6" y="46" font-family="Cormorant Garamond,serif" font-size="46" font-weight="700" fill="#fff">F</text>
+            <text x="30" y="46" font-family="Cormorant Garamond,serif" font-size="46" font-weight="700" fill="#fff">R</text>
+            <line x1="4" y1="54" x2="60" y2="54" stroke="#b9985a" stroke-width="2"/>
+          </svg>
+          <div class="wm"><b>FORZA</b><span>REAL ESTATE · İSTANBUL</span></div>
+        </div>
+      </div>
+      <div class="cap">“FR” monogram <small>baş harfler</small></div>
+    </div>
+
+    <!-- 5 — Minimal skyline -->
+    <div class="card">
+      <span class="num">5</span>
+      <div class="stage dark">
+        <div class="lock">
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <g fill="#fff">
+              <rect x="16" y="28" width="9" height="26"/>
+              <rect x="27.5" y="16" width="9" height="38"/>
+              <rect x="39" y="34" width="9" height="20"/>
+            </g>
+            <rect x="12" y="54" width="40" height="3" fill="#fff"/>
+          </svg>
+          <div class="wm"><b>FORZA</b><span>REAL ESTATE · İSTANBUL</span></div>
+        </div>
+      </div>
+      <div class="cap">Minimal şehir silüeti <small>modern</small></div>
+    </div>
+
+    <!-- 6 — Roofline over F -->
+    <div class="card">
+      <span class="num">6</span>
+      <div class="stage dark">
+        <div class="lock">
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <path d="M14 34 L32 18 L50 34" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="32" y="54" font-family="Cormorant Garamond,serif" font-size="34" font-weight="600" text-anchor="middle" fill="#fff">F</text>
+          </svg>
+          <div class="wm"><b>FORZA</b><span>REAL ESTATE · İSTANBUL</span></div>
+        </div>
+      </div>
+      <div class="cap">Çatı + “F” <small>emlak vurgusu</small></div>
+    </div>
+
+  </div>
+</body>
+</html>

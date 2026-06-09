@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>İlan | Forza Gayrimenkul</title>
+  <meta name="description" content="Forza Gayrimenkul ilan detayı." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+</head>
+<body class="detail-page">
+  <a class="skip-link" href="#ilan">İçeriğe geç</a>
+
+  <header class="site-header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Forza Gayrimenkul ana sayfa">
+        <img class="logo-img" src="assets/logo-header.png" alt="Forza Gayrimenkul" />
+      </a>
+      <nav class="main-nav" id="mainNav" aria-label="Ana menü">
+        <a href="index.html#anasayfa">Ana Sayfa</a>
+        <a href="index.html#surec">Süreç</a>
+        <a href="index.html#ilanlar">İlanlar</a>
+        <a href="index.html#danismanlar">Danışmanlar</a>
+        <a href="index.html#iletisim">İletişim</a>
+        <a href="index.html#iletisim" class="nav-cta">Ücretsiz Değerleme</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="ilan" class="detail-main">
+    <div class="container">
+      <a href="index.html#ilanlar" class="back-link">← İlanlara Dön</a>
+
+      <div id="detailContent">
+        <div class="detail-top">
+          <div class="gallery">
+            <div class="gallery-main">
+              <span class="gallery-badge" id="dBadge">Satılık</span>
+              <span class="gallery-count" id="galleryCount">1 / 1</span>
+              <button class="gallery-all" id="galleryAll" type="button">⤢ Tüm Fotoğraflar</button>
+              <img id="galleryMain" src="" alt="İlan fotoğrafı" />
+            </div>
+            <div class="gallery-thumbs" id="galleryThumbs"></div>
+          </div>
+
+          <aside class="detail-summary">
+            <p class="d-loc" id="dLoc"></p>
+            <h1 class="d-title" id="dTitle"></h1>
+            <div class="d-price" id="dPrice"></div>
+            <div class="d-quick" id="dQuick"></div>
+            <div class="d-actions" id="dActions"></div>
+            <p class="d-ref" id="dRef"></p>
+          </aside>
+        </div>
+
+        <section class="d-section">
+          <h2 class="d-h2">İlan Özellikleri</h2>
+          <div class="spec-grid" id="specGrid"></div>
+        </section>
+
+        <section class="d-section">
+          <h2 class="d-h2">Açıklama</h2>
+          <p class="d-desc" id="dDesc"></p>
+          <ul class="d-features" id="dFeatures"></ul>
+        </section>
+
+        <section class="d-section">
+          <h2 class="d-h2">İlan Danışmanı</h2>
+          <div class="agent-card">
+            <div class="agent-photo" id="agentPhoto" data-initial=""></div>
+            <div class="agent-info">
+              <h3 id="agentName"></h3>
+              <p>Forza Gayrimenkul</p>
+              <p class="agent-cred">Taşınmaz Ticareti Yetki Belgesi No: 3410522</p>
+            </div>
+            <div class="agent-actions" id="agentActions"></div>
+          </div>
+        </section>
+
+        <section class="d-section">
+          <h2 class="d-h2">Konum</h2>
+          <div class="contact-map">
+            <iframe id="mapFrame" title="Konum" width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
+            <a class="map-btn" id="mapBtn" target="_blank" rel="noopener" href="#">Google Haritalar'da Aç →</a>
+          </div>
+        </section>
+      </div>
+
+      <p id="notFound" hidden style="text-align:center;padding:80px 0;color:var(--muted)">İlan bulunamadı. <a href="index.html#ilanlar" style="color:var(--gold)">İlanlara dön →</a></p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="logo footer-logo"><img class="logo-img" src="assets/logo.png" alt="Forza Gayrimenkul" /></a>
+        <p>1999'dan günümüze güvenilir gayrimenkul danışmanlığı. İstanbul ve Ayvalık'ta konut, yatırım, ticari gayrimenkul ve arsa.</p>
+      </div>
+      <div class="footer-col"><h4>Keşfet</h4><a href="index.html#ilanlar">İlanlar</a><a href="index.html#surec">Süreç</a><a href="index.html#danismanlar">Danışmanlar</a></div>
+      <div class="footer-col"><h4>Kurumsal</h4><a href="index.html#hakkimizda">Hakkımızda</a><a href="index.html#iletisim">İletişim</a></div>
+      <div class="footer-col"><h4>İletişim</h4>
+        <a href="tel:+905323056656">(532) 305 66 56</a>
+        <a href="mailto:forzaemlak34@gmail.com">forzaemlak34@gmail.com</a>
+        <a href="https://www.forzagayrimenkul.com.tr" target="_blank" rel="noopener">forzagayrimenkul.com.tr</a>
+        <p>Merkez: Kadıköy / İstanbul</p>
+        <p>Şube: Ayvalık / Balıkesir</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><div class="container"><p>© 2026 Forza Gayrimenkul · Est. 1999 · Taşınmaz Ticareti Yetki Belgesi No: 3410522</p></div></div>
+  </footer>
+
+  <a class="ig-float" target="_blank" rel="noopener" href="https://www.instagram.com/forzagayrimenkul/" aria-label="Instagram"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.6" stroke="currentColor" stroke-width="1.9"/><circle cx="17.7" cy="6.3" r="1.4" fill="currentColor"/></svg></a>
+  <a class="wa-float" target="_blank" rel="noopener" href="https://wa.me/905323056656" aria-label="WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.5 2.1 7.9L.3 31.6l8-2.1c2.3 1.3 4.9 1.9 7.6 1.9 8.6 0 15.5-7 15.5-15.6S24.6.4 16 .4zm0 28.5c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.8 1.3 1.3-4.6-.3-.5c-1.3-2.1-2-4.5-2-7C2.9 8.7 8.8 2.8 16 2.8c3.5 0 6.8 1.4 9.3 3.8 2.5 2.5 3.8 5.8 3.8 9.3 0 7.2-5.9 13-13.1 13z"/></svg></a>
+
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+  (function () {
+    var params = new URLSearchParams(location.search);
+    var id = params.get("id");
+
+    function tel(p){ var d=(p||"").replace(/\D/g,"").slice(-10); return d.length===10 ? "("+d.slice(0,3)+") "+d.slice(3,6)+" "+d.slice(6,8)+" "+d.slice(8) : p; }
+    function initials(n){ return (n||"").split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase(); }
+    function fmt(n){ return Number(n||0).toLocaleString("tr-TR"); }
+
+    fetch("ilanlar.json", { cache: "no-store" }).then(r=>r.json()).then(function(data){
+      var list = (data && data.ilanlar) || [];
+      var il = list.find(function(x){ return x.id === id; }) || (id ? null : list[0]);
+      if (!il) { document.getElementById("detailContent").style.display="none"; document.getElementById("notFound").hidden=false; return; }
+
+      document.title = il.baslik + " | Forza Gayrimenkul";
+
+      // Galeri
+      var fotolar = il.fotolar && il.fotolar.length ? il.fotolar : [];
+      var main = document.getElementById("galleryMain");
+      var thumbs = document.getElementById("galleryThumbs");
+      var count = document.getElementById("galleryCount");
+      var current = 0, elements = [];
+      if (fotolar.length) { main.src = fotolar[0]; count.textContent = "1 / " + fotolar.length; }
+      fotolar.forEach(function(src, i){
+        elements.push({ href: src, type: "image" });
+        var b = document.createElement("button");
+        b.className = "thumb" + (i===0?" active":"");
+        b.dataset.src = src; b.dataset.idx = i+1;
+        b.innerHTML = '<img src="'+src+'" loading="lazy" alt="Fotoğraf '+(i+1)+'">';
+        b.addEventListener("click", function(){
+          thumbs.querySelector(".thumb.active") && thumbs.querySelector(".thumb.active").classList.remove("active");
+          this.classList.add("active"); main.src=this.dataset.src; current=(+this.dataset.idx)-1;
+          count.textContent = this.dataset.idx + " / " + fotolar.length;
+          this.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"});
+        });
+        thumbs.appendChild(b);
+      });
+      var lb = (typeof GLightbox!=="undefined" && elements.length) ? GLightbox({elements:elements, loop:true}) : null;
+      if (lb){ main.style.cursor="zoom-in"; main.addEventListener("click", function(){ lb.openAt(current); }); document.getElementById("galleryAll").addEventListener("click", function(){ lb.openAt(current); }); lb.on("slide_changed", function(d){ current=d.current.index; count.textContent=(current+1)+" / "+fotolar.length; }); }
+      document.getElementById("galleryAll").textContent = "⤢ Tüm Fotoğraflar (" + fotolar.length + ")";
+      document.getElementById("dBadge").textContent = il.islem==="kiralik" ? "Kiralık" : "Satılık";
+
+      // Özet
+      document.getElementById("dLoc").textContent = "📍 " + il.konum;
+      document.getElementById("dTitle").textContent = il.baslik;
+      document.getElementById("dPrice").innerHTML = fmt(il.fiyat) + " ₺" + (il.islem==="kiralik"?' <span style="font-size:1rem;color:var(--muted)">/ ay</span>':"");
+      var quick = [["Oda", il.oda], ["Net Alan", il.m2 ? il.m2+" m²":""], ["Kat", il.kat], ["Durum", il.durum]].filter(q=>q[1]);
+      document.getElementById("dQuick").innerHTML = quick.map(q=>'<div><span>'+q[0]+'</span><b>'+q[1]+'</b></div>').join("");
+      var p = il.danisman_tel || "+905323056656";
+      var waMsg = encodeURIComponent("Merhaba, " + il.baslik + " (" + fmt(il.fiyat) + " ₺) ilanı hakkında bilgi almak istiyorum.");
+      document.getElementById("dActions").innerHTML =
+        '<a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+p.replace(/\D/g,"")+'?text='+waMsg+'">WhatsApp ile Sor</a>'+
+        '<a class="btn btn-ghost" href="tel:'+p+'">'+tel(p)+' · Ara</a>';
+      document.getElementById("dRef").textContent = "İlan No: " + (il.id||"") + " · Emlak Tipi: " + (il.islem==="kiralik"?"Kiralık":"Satılık") + " " + (il.tur==="ofis"?"Ofis":il.tur==="arsa"?"Arsa":"Daire");
+
+      // Özellikler
+      var specs = [
+        ["Emlak Tipi", (il.islem==="kiralik"?"Kiralık ":"Satılık ")+(il.tur==="ofis"?"Ofis":il.tur==="arsa"?"Arsa":"Daire")],
+        ["Oda Sayısı", il.oda], ["Net m²", il.m2?il.m2+" m²":""], ["Kat", il.kat],
+        ["Yapının Durumu", il.durum], ["Asansör", il.asansor], ["Tapu Durumu", il.tapu],
+        ["Krediye Uygun", il.krediye], ["Banyo", il.banyo], ["Isıtma", il.isitma],
+        ["Aidat", il.aidat], ["Cephe", il.cephe], ["Otopark", il.otopark],
+        ["Kullanım Durumu", il.kullanim], ["Eşyalı", il.esyali]
+      ].filter(s=>s[1]);
+      document.getElementById("specGrid").innerHTML = specs.map(s=>'<div class="spec"><span>'+s[0]+'</span><b>'+s[1]+'</b></div>').join("");
+
+      // Açıklama + özellikler
+      document.getElementById("dDesc").textContent = il.aciklama || "";
+      document.getElementById("dFeatures").innerHTML = (il.ozellikler||[]).map(o=>'<li>'+o+'</li>').join("");
+
+      // Danışman
+      document.getElementById("agentPhoto").setAttribute("data-initial", initials(il.danisman||"Forza"));
+      document.getElementById("agentName").textContent = il.danisman || "Forza Gayrimenkul";
+      document.getElementById("agentActions").innerHTML =
+        '<a class="btn" href="tel:'+p+'">'+tel(p)+'</a>'+
+        '<a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/'+p.replace(/\D/g,"")+'">WhatsApp</a>'+
+        '<a class="btn btn-ghost" href="mailto:forzaemlak34@gmail.com">E-posta</a>';
+
+      // Harita
+      if (il.harita_bbox && il.harita_marker) {
+        document.getElementById("mapFrame").src = "https://www.openstreetmap.org/export/embed.html?bbox="+encodeURIComponent(il.harita_bbox)+"&layer=mapnik&marker="+encodeURIComponent(il.harita_marker);
+      } else {
+        var mf = document.getElementById("mapFrame"); mf.style.display = "none";
+        var cm = mf.closest(".contact-map"); if (cm) { cm.style.height = "auto"; cm.style.padding = "40px"; cm.style.textAlign = "center"; }
+        document.getElementById("mapBtn").style.position = "static";
+      }
+      document.getElementById("mapBtn").href = "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(il.harita_arama || il.konum);
+
+      // reveal
+      document.querySelectorAll(".reveal").forEach(function(el){ el.classList.add("in"); });
+    }).catch(function(){ document.getElementById("detailContent").style.display="none"; document.getElementById("notFound").hidden=false; });
+  })();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/ilanlar"
+public_folder: "assets/ilanlar"
+locale: "tr"
+
+collections:
+  - name: "ilanlar"
+    label: "İlanlar"
+    files:
+      - name: "ilanlar"
+        label: "Tüm İlanlar"
+        file: "ilanlar.json"
+        description: "Yeni ilan eklemek için '+ Add' / 'Ekle' deyin. Bitince 'Publish' / 'Yayınla'."
+        fields:
+          - label: "İlanlar"
+            name: "ilanlar"
+            label_singular: "İlan"
+            widget: "list"
+            summary: "{{fields.baslik}}"
+            fields:
+              - { label: "ID (benzersiz, küçük harf ve tire)", name: "id", widget: "string", hint: "örnek: suadiye-3-1 (boşluk/Türkçe karakter kullanmayın)" }
+              - { label: "Başlık", name: "baslik", widget: "string" }
+              - { label: "Konum", name: "konum", widget: "string", hint: "örnek: Suadiye, Kadıköy" }
+              - { label: "İşlem", name: "islem", widget: "select", options: ["satilik", "kiralik"], default: "satilik" }
+              - { label: "Tür", name: "tur", widget: "select", options: ["konut", "ofis", "arsa"], default: "konut" }
+              - { label: "Fiyat (₺, sadece sayı)", name: "fiyat", widget: "number", value_type: "int" }
+              - { label: "Danışman", name: "danisman", widget: "select", options: ["Aykan Uyanıktürk", "Aydan Münevver", "Hatica Dede", "Barış Aydemir"] }
+              - { label: "Danışman Telefon", name: "danisman_tel", widget: "string", default: "+90", hint: "+905XXXXXXXXX", required: false }
+              - { label: "Öne çıkar (★ Ayrıcalıklı rozeti)", name: "vip", widget: "boolean", default: false, required: false }
+              - { label: "Oda (örn. 3+1)", name: "oda", widget: "string", required: false }
+              - { label: "Banyo", name: "banyo", widget: "string", required: false }
+              - { label: "m² (net, sayı)", name: "m2", widget: "number", value_type: "int", required: false }
+              - { label: "Kat (örn. 10 / 12)", name: "kat", widget: "string", required: false }
+              - { label: "Yapının Durumu", name: "durum", widget: "string", required: false }
+              - { label: "Asansör", name: "asansor", widget: "string", required: false }
+              - { label: "Tapu Durumu", name: "tapu", widget: "string", required: false }
+              - { label: "Krediye Uygun", name: "krediye", widget: "string", required: false }
+              - { label: "Isıtma", name: "isitma", widget: "string", required: false }
+              - { label: "Aidat", name: "aidat", widget: "string", required: false }
+              - { label: "Cephe", name: "cephe", widget: "string", required: false }
+              - { label: "Otopark", name: "otopark", widget: "string", required: false }
+              - { label: "Eşyalı", name: "esyali", widget: "string", required: false }
+              - { label: "Kullanım Durumu", name: "kullanim", widget: "string", required: false }
+              - { label: "Açıklama", name: "aciklama", widget: "text", required: false }
+              - { label: "Öne Çıkan Özellikler", name: "ozellikler", widget: "list", required: false, hint: "Her satır bir özellik" }
+              - { label: "Arama Etiketleri", name: "etiket", widget: "string", required: false, hint: "Aramada bulunması için anahtar kelimeler" }
+              - { label: "Fotoğraflar", name: "fotolar", widget: "list", required: false, field: { label: "Fotoğraf", name: "foto", widget: "image" } }
+              - { label: "Harita bbox (opsiyonel, teknik)", name: "harita_bbox", widget: "string", required: false }
+              - { label: "Harita marker (opsiyonel, teknik)", name: "harita_marker", widget: "string", required: false }
+              - { label: "Harita arama (adres)", name: "harita_arama", widget: "string", required: false }

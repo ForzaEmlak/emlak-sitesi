@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Forza İlan Paneli</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0a0a0a;--bg2:#101010;--bg3:#181818;--line:rgba(255,255,255,.14);--gold:#d6d6d6;--text:#f4f4f4;--muted:#9a9a9a;--serif:"Cormorant Garamond",serif;--sans:"Jost",system-ui,sans-serif}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:var(--gold)}
+    .top{border-bottom:1px solid var(--line);padding:18px 0;background:var(--bg2)}
+    .wrap{width:min(94%,1200px);margin:0 auto}
+    .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-family:var(--serif);font-size:1.6rem;letter-spacing:1px}
+    .brand small{font-family:var(--sans);font-size:11px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;display:block}
+    .note{background:rgba(214,214,214,.06);border:1px solid var(--line);border-radius:8px;padding:14px 18px;color:var(--muted);font-size:.9rem;margin:24px 0}
+    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:start;margin:24px 0 60px}
+    h2{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin-bottom:16px}
+    .card{background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:24px}
+    label{display:block;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin:14px 0 5px}
+    input,select,textarea{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:6px;color:var(--text);font-family:var(--sans);font-size:14px;padding:11px 13px}
+    input:focus,select,textarea:focus{outline:none;border-color:var(--gold)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+    .btn{display:inline-block;background:#fff;color:#111;border:none;border-radius:50px;padding:13px 24px;font-weight:600;font-size:13px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;margin-top:18px;transition:.2s}
+    .btn:hover{background:var(--gold)}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+    .btn.ghost:hover{background:var(--gold);color:#111}
+    .btn.sm{padding:7px 14px;font-size:11px;margin:0}
+    .thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .thumbs img{width:64px;height:64px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+    .item{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:12px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .item h3{font-family:var(--serif);font-weight:600;font-size:1.15rem}
+    .item p{font-size:.85rem;color:var(--muted)}
+    .item .price{color:var(--gold);font-weight:600;font-size:.95rem;margin-top:2px}
+    .item-actions{display:flex;gap:6px;flex-shrink:0}
+    .out{width:100%;min-height:160px;font-family:monospace;font-size:12px;margin-top:12px}
+    .empty{color:var(--muted);text-align:center;padding:30px}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    @media(max-width:820px){.grid{grid-template-columns:1fr}.row,.row3{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="top"><div class="wrap">
+    <div class="brand">Forza İlan Paneli<small>Yönetim</small></div>
+    <a href="index.html" class="btn ghost sm">← Siteye Dön</a>
+  </div></div>
+
+  <div class="wrap">
+    <div class="note">
+      <b>Nasıl çalışır?</b> İlanı doldur → <b>Kaydet</b>. İlanların bu tarayıcıda saklanır.
+      Kalıcı olarak yayına almak için <b>JSON'u Dışa Aktar</b>'a bas, dosyayı/ kodu bana ilet — siteye işlerim.
+      (İleride site Netlify'a yüklenince bu panel doğrudan yayına yazacak şekilde bağlanabilir.)
+    </div>
+
+    <div class="grid">
+      <!-- FORM -->
+      <div class="card">
+        <h2 id="formTitle">Yeni İlan Ekle</h2>
+        <form id="ilanForm">
+          <label>Başlık</label>
+          <input name="baslik" required placeholder="Suadiye'de 3+1 Lüks Daire" />
+          <div class="row">
+            <div><label>Konum</label><input name="konum" required placeholder="Suadiye, Kadıköy" /></div>
+            <div><label>Fiyat (₺)</label><input name="fiyat" type="number" required placeholder="32000000" /></div>
+          </div>
+          <div class="row3">
+            <div><label>İşlem</label><select name="islem"><option value="satilik">Satılık</option><option value="kiralik">Kiralık</option></select></div>
+            <div><label>Tür</label><select name="tur"><option value="konut">Konut</option><option value="ofis">Ofis</option><option value="arsa">Arsa</option></select></div>
+            <div><label>Danışman</label><select name="danisman"><option>Aykan Uyanıktürk</option><option>Münevver Aydan Kahyaoğlu</option><option>Hatica Dede</option><option>Barış Aydemir</option></select></div>
+          </div>
+          <div class="row3">
+            <div><label>Oda</label><input name="oda" placeholder="3+1" /></div>
+            <div><label>Banyo</label><input name="banyo" placeholder="2" /></div>
+            <div><label>m² (net)</label><input name="m2" type="number" placeholder="100" /></div>
+          </div>
+          <div class="row3">
+            <div><label>Kat</label><input name="kat" placeholder="10 / 12" /></div>
+            <div><label>Isıtma</label><input name="isitma" placeholder="Kombi" /></div>
+            <div><label>Aidat</label><input name="aidat" placeholder="2.000 ₺" /></div>
+          </div>
+          <div class="row">
+            <div><label>Cephe</label><input name="cephe" placeholder="Güney & Kuzey" /></div>
+            <div><label>Otopark</label><input name="otopark" placeholder="Açık & Kapalı" /></div>
+          </div>
+          <label>Açıklama</label>
+          <textarea name="aciklama" rows="3" placeholder="İlan açıklaması..."></textarea>
+          <label>Fotoğraflar (önizleme)</label>
+          <input type="file" id="fotoInput" accept="image/*" multiple />
+          <div class="thumbs" id="thumbs"></div>
+          <button class="btn" type="submit" id="saveBtn">İlanı Kaydet</button>
+          <button class="btn ghost" type="button" id="resetBtn">Temizle</button>
+        </form>
+      </div>
+
+      <!-- KAYITLI -->
+      <div class="card">
+        <h2>Kayıtlı İlanlar (<span id="count">0</span>)</h2>
+        <div id="list"><p class="empty">Henüz ilan yok.</p></div>
+        <div class="toolbar">
+          <button class="btn sm" id="exportBtn">JSON'u Dışa Aktar (indir)</button>
+          <button class="btn ghost sm" id="copyBtn">Kodu Kopyala</button>
+          <button class="btn ghost sm" id="clearBtn">Tümünü Sil</button>
+        </div>
+        <textarea class="out" id="out" readonly placeholder="Dışa aktarılan JSON burada görünür..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var KEY = 'forza_ilanlar';
+    var listEl = document.getElementById('list');
+    var countEl = document.getElementById('count');
+    var form = document.getElementById('ilanForm');
+    var thumbsEl = document.getElementById('thumbs');
+    var outEl = document.getElementById('out');
+    var editId = null;
+    var pendingFotos = [];
+
+    function load(){ try{ return JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ return []; } }
+    function save(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+    function fmt(n){ return Number(n||0).toLocaleString('tr-TR'); }
+
+    document.getElementById('fotoInput').addEventListener('change', function(e){
+      pendingFotos = [];
+      thumbsEl.innerHTML = '';
+      Array.from(e.target.files).forEach(function(file){
+        var rd = new FileReader();
+        rd.onload = function(ev){ pendingFotos.push(file.name); var im=document.createElement('img'); im.src=ev.target.result; thumbsEl.appendChild(im); };
+        rd.readAsDataURL(file);
+      });
+    });
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var fd = new FormData(form);
+      var obj = {};
+      fd.forEach(function(v,k){ obj[k]=v; });
+      obj.fotolar = pendingFotos.slice();
+      var arr = load();
+      if(editId){ var idx=arr.findIndex(function(x){return x._id===editId}); if(idx>-1){ obj._id=editId; obj.fotolar = obj.fotolar.length?obj.fotolar:arr[idx].fotolar; arr[idx]=obj; } editId=null; document.getElementById('formTitle').textContent='Yeni İlan Ekle'; document.getElementById('saveBtn').textContent='İlanı Kaydet'; }
+      else { obj._id = 'i'+Date.now(); arr.push(obj); }
+      save(arr); form.reset(); pendingFotos=[]; thumbsEl.innerHTML=''; render();
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', function(){ form.reset(); pendingFotos=[]; thumbsEl.innerHTML=''; editId=null; document.getElementById('formTitle').textContent='Yeni İlan Ekle'; document.getElementById('saveBtn').textContent='İlanı Kaydet'; });
+
+    function render(){
+      var arr = load();
+      countEl.textContent = arr.length;
+      if(!arr.length){ listEl.innerHTML='<p class="empty">Henüz ilan yok.</p>'; return; }
+      listEl.innerHTML = arr.map(function(x){
+        return '<div class="item"><div><h3>'+(x.baslik||'-')+'</h3><p>'+(x.konum||'')+' · '+(x.islem==='kiralik'?'Kiralık':'Satılık')+' · '+(x.oda||'')+' · '+(x.m2||'')+'m²</p><div class="price">'+fmt(x.fiyat)+' ₺'+(x.islem==='kiralik'?' / ay':'')+'</div><p style="margin-top:4px">'+(x.fotolar&&x.fotolar.length?(x.fotolar.length+' foto'):'foto yok')+'</p></div>'+
+          '<div class="item-actions"><button class="btn ghost sm" onclick="editItem(\''+x._id+'\')">Düzenle</button><button class="btn ghost sm" onclick="delItem(\''+x._id+'\')">Sil</button></div></div>';
+      }).join('');
+    }
+
+    window.editItem = function(id){
+      var arr=load(); var x=arr.find(function(o){return o._id===id}); if(!x)return;
+      Object.keys(x).forEach(function(k){ if(form.elements[k]) form.elements[k].value=x[k]; });
+      pendingFotos = x.fotolar||[]; thumbsEl.innerHTML=''; editId=id;
+      document.getElementById('formTitle').textContent='İlanı Düzenle'; document.getElementById('saveBtn').textContent='Güncelle';
+      window.scrollTo({top:0,behavior:'smooth'});
+    };
+    window.delItem = function(id){ if(!confirm('Bu ilanı sil?'))return; var arr=load().filter(function(o){return o._id!==id}); save(arr); render(); };
+
+    document.getElementById('exportBtn').addEventListener('click', function(){
+      var data = JSON.stringify(load(), null, 2);
+      outEl.value = data;
+      var blob = new Blob([data], {type:'application/json'});
+      var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='ilanlar.json'; a.click();
+    });
+    document.getElementById('copyBtn').addEventListener('click', function(){ outEl.value = JSON.stringify(load(), null, 2); outEl.select(); document.execCommand('copy'); this.textContent='Kopyalandı ✓'; var b=this; setTimeout(function(){b.textContent='Kodu Kopyala'},1500); });
+    document.getElementById('clearBtn').addEventListener('click', function(){ if(confirm('TÜM ilanları sil?')){ save([]); render(); outEl.value=''; } });
+
+    render();
+  </script>
+</body>
+</html>

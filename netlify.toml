@@ -1,0 +1,4 @@
+# Forza Gayrimenkul — statik site (derleme yok)
+[build]
+  publish = "."
+  command = ""
