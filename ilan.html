@@ -24,7 +24,7 @@
       <nav class="main-nav" id="mainNav" aria-label="Ana menü">
         <a href="index.html#anasayfa">Ana Sayfa</a>
         <a href="index.html#ilanlar">İlanlar</a>
-        <a href="index.html#surec">Süreç</a>
+        <a href="index.html#hakkimizda">Hakkımızda</a>
         <a href="index.html#danismanlar">Danışmanlar</a>
         <a href="index.html#iletisim">İletişim</a>
         <a href="index.html#iletisim" class="nav-cta">Ücretsiz Değerleme</a>
@@ -71,19 +71,6 @@
         </section>
 
         <section class="d-section">
-          <h2 class="d-h2">İlan Danışmanı</h2>
-          <div class="agent-card">
-            <div class="agent-photo" id="agentPhoto" data-initial=""></div>
-            <div class="agent-info">
-              <h3 id="agentName"></h3>
-              <p>Forza Gayrimenkul</p>
-              <p class="agent-cred">Taşınmaz Ticareti Yetki Belgesi No: 3410522</p>
-            </div>
-            <div class="agent-actions" id="agentActions"></div>
-          </div>
-        </section>
-
-        <section class="d-section">
           <h2 class="d-h2">Konum</h2>
           <div class="contact-map">
             <iframe id="mapFrame" title="Konum" width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
@@ -102,7 +89,7 @@
         <a href="index.html" class="logo footer-logo"><img class="logo-img" src="assets/logo.png" alt="Forza Gayrimenkul" /></a>
         <p>1999'dan günümüze güvenilir gayrimenkul danışmanlığı. İstanbul ve Ayvalık'ta konut, yatırım, ticari gayrimenkul ve arsa.</p>
       </div>
-      <div class="footer-col"><h4>Keşfet</h4><a href="index.html#ilanlar">İlanlar</a><a href="index.html#surec">Süreç</a><a href="index.html#danismanlar">Danışmanlar</a></div>
+      <div class="footer-col"><h4>Keşfet</h4><a href="index.html#ilanlar">İlanlar</a><a href="index.html#hakkimizda">Hakkımızda</a><a href="index.html#danismanlar">Danışmanlar</a></div>
       <div class="footer-col"><h4>Kurumsal</h4><a href="index.html#hakkimizda">Hakkımızda</a><a href="index.html#iletisim">İletişim</a></div>
       <div class="footer-col"><h4>İletişim</h4>
         <a href="tel:+905323056656">(532) 305 66 56</a>
@@ -188,14 +175,6 @@
       // Açıklama + özellikler
       document.getElementById("dDesc").textContent = il.aciklama || "";
       document.getElementById("dFeatures").innerHTML = (il.ozellikler||[]).map(o=>'<li>'+o+'</li>').join("");
-
-      // Danışman
-      document.getElementById("agentPhoto").setAttribute("data-initial", initials(il.danisman||"Forza"));
-      document.getElementById("agentName").textContent = il.danisman || "Forza Gayrimenkul";
-      document.getElementById("agentActions").innerHTML =
-        '<a class="btn" href="tel:'+p+'">'+tel(p)+'</a>'+
-        '<a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/'+p.replace(/\D/g,"")+'">WhatsApp</a>'+
-        '<a class="btn btn-ghost" href="mailto:forzaemlak34@gmail.com">E-posta</a>';
 
       // Harita
       if (il.harita_bbox && il.harita_marker) {
