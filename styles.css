@@ -140,8 +140,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 22px; }
 .hero-eyebrow::before { content: ""; width: 46px; height: 1px; background: var(--gold); }
 .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: end; }
-.hero-title { font-family: var(--serif); font-weight: 500; font-size: clamp(3.2rem, 8vw, 7rem); line-height: .98; letter-spacing: -1px; }
+.hero-title { font-family: var(--serif); font-weight: 500; font-size: clamp(2.3rem, 4.6vw, 4.1rem); line-height: 1.05; letter-spacing: -.5px; }
 .hero-right { padding-bottom: 12px; }
+.hero-locations { font-family: var(--sans); font-size: clamp(.78rem, 1.1vw, .92rem); letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
 .hero-desc { font-family: var(--serif); font-size: clamp(1.3rem, 2.2vw, 1.7rem); line-height: 1.5; color: var(--text); margin-bottom: 30px; }
 
 /* Hero arama kutusu */
