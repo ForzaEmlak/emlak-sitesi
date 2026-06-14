@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=2" />
+  <link rel="stylesheet" href="styles.css?v=4" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 <body class="detail-page">
@@ -158,7 +158,23 @@
       var waMsg = encodeURIComponent("Merhaba, " + il.baslik + " (" + fmt(il.fiyat) + " ₺) ilanı hakkında bilgi almak istiyorum.");
       document.getElementById("dActions").innerHTML =
         '<a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+p.replace(/\D/g,"")+'?text='+waMsg+'">WhatsApp ile Sor</a>'+
-        '<a class="btn btn-ghost" href="tel:'+p+'">'+tel(p)+' · Ara</a>';
+        '<a class="btn btn-ghost" href="tel:'+p+'">'+tel(p)+' · Ara</a>'+
+        '<button type="button" class="btn btn-ghost" id="shareBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg> Paylaş</button>';
+      (function(){
+        var sb = document.getElementById("shareBtn"); if (!sb) return;
+        var url = location.href;
+        var shareData = { title: il.baslik, text: il.baslik + " — " + fmt(il.fiyat) + " ₺ · Forza Gayrimenkul", url: url };
+        sb.addEventListener("click", function(){
+          if (navigator.share) { navigator.share(shareData).catch(function(){}); }
+          else if (navigator.clipboard) {
+            navigator.clipboard.writeText(url).then(function(){
+              var t = sb.innerHTML; sb.innerHTML = "✓ Bağlantı kopyalandı"; setTimeout(function(){ sb.innerHTML = t; }, 1800);
+            });
+          } else {
+            window.open("https://wa.me/?text=" + encodeURIComponent(shareData.text + " " + url), "_blank");
+          }
+        });
+      })();
       document.getElementById("dRef").textContent = "İlan No: " + (il.id||"") + " · Emlak Tipi: " + (il.islem==="kiralik"?"Kiralık":"Satılık") + " " + (il.tur==="ofis"?"Ofis":il.tur==="arsa"?"Arsa":"Daire");
 
       // Özellikler
@@ -191,6 +207,6 @@
     }).catch(function(){ document.getElementById("detailContent").style.display="none"; document.getElementById("notFound").hidden=false; });
   })();
   </script>
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>

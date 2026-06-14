@@ -31,6 +31,9 @@
     return `
       <a class="card" href="ilan.html?id=${encodeURIComponent(il.id)}" data-islem="${il.islem}" data-tur="${il.tur}">
         ${badge}
+        <button type="button" class="card-share" data-id="${il.id}" data-baslik="${(il.baslik||"").replace(/"/g,"&quot;")}" aria-label="İlanı paylaş" title="Paylaş">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+        </button>
         <img class="ph" src="${kapak(il)}" alt="${il.baslik} — ${il.konum}" loading="lazy" />
         <div class="ph-fallback"></div>
         <div class="card-body">
@@ -40,6 +43,20 @@
         </div>
       </a>`;
   }
+
+  function paylas(id, baslik) {
+    const url = new URL("ilan.html?id=" + encodeURIComponent(id), location.href).href;
+    const data = { title: baslik || "Forza Gayrimenkul", text: (baslik || "İlan") + " · Forza Gayrimenkul", url: url };
+    if (navigator.share) { navigator.share(data).catch(() => {}); }
+    else if (navigator.clipboard) { navigator.clipboard.writeText(url).then(() => alert("İlan bağlantısı kopyalandı:\n" + url)); }
+    else { window.open("https://wa.me/?text=" + encodeURIComponent(data.text + " " + url), "_blank"); }
+  }
+  if (grid) grid.addEventListener("click", e => {
+    const sb = e.target.closest(".card-share");
+    if (!sb) return;
+    e.preventDefault(); e.stopPropagation();
+    paylas(sb.dataset.id, sb.dataset.baslik);
+  });
 
   function render(list) {
     if (!grid) return;
