@@ -97,7 +97,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .site-header.scrolled .header-inner { padding-block: 8px; }
 
-.logo { display: flex; align-items: center; }
+.logo { display: flex; align-items: center; flex-shrink: 0; }
 .logo-img { height: clamp(68px, 7.5vw, 128px); width: auto; display: block; transition: height .4s var(--ease); }
 .site-header.scrolled .logo-img { height: clamp(50px, 4.6vw, 74px); }
 
@@ -423,9 +423,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero-grid { grid-template-columns: 1fr; gap: 24px; }
   .hero-right { padding-bottom: 0; }
 }
-@media (max-width: 860px) {
+/* Hamburger menü: yatay menü ancak geniş ekranda sığar */
+@media (max-width: 1080px) {
   .nav-toggle { display: flex; }
-  .logo-img, .site-header.scrolled .logo-img { height: 58px; }
   .site-header, .site-header.scrolled { backdrop-filter: none; background: rgba(10,9,8,.96); }
   .main-nav {
     position: fixed; inset: 0 0 0 auto; width: min(82%, 340px);
@@ -436,6 +436,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .main-nav.open { transform: translateX(0); }
   .main-nav a { font-size: 15px; }
   .main-nav a.nav-cta { width: 100%; text-align: center; }
+}
+@media (max-width: 860px) {
+  .logo-img, .site-header.scrolled .logo-img { height: 58px; }
   .hero-search { grid-template-columns: 1fr 1fr; }
   .hero-search .search-btn { grid-column: 1 / -1; padding: 14px; justify-content: center; }
   /* zaman çizelgesi tek sütun */
