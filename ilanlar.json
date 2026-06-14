@@ -109,7 +109,18 @@
       "harita_marker": "40.9755,29.0990",
       "harita_arama": "Baytur Sitesi Kozyatağı Kadıköy İstanbul",
       "fotolar": [
-        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80"
+        "assets/ilanlar/kozyatagi-01.jpg",
+        "assets/ilanlar/kozyatagi-02.jpg",
+        "assets/ilanlar/kozyatagi-03.jpg",
+        "assets/ilanlar/kozyatagi-04.jpg",
+        "assets/ilanlar/kozyatagi-05.jpg",
+        "assets/ilanlar/kozyatagi-06.jpg",
+        "assets/ilanlar/kozyatagi-07.jpg",
+        "assets/ilanlar/kozyatagi-08.jpg",
+        "assets/ilanlar/kozyatagi-09.jpg",
+        "assets/ilanlar/kozyatagi-10.jpg",
+        "assets/ilanlar/kozyatagi-11.jpg",
+        "assets/ilanlar/kozyatagi-12.jpg"
       ]
     }
   ]
