@@ -67,6 +67,50 @@
         "assets/ilanlar/suadiye-23.jpg",
         "assets/ilanlar/suadiye-24.jpg"
       ]
+    },
+    {
+      "id": "kozyatagi-baytur-3-1",
+      "baslik": "Kozyatağı Baytur Sitesi'nde Havuzlu Sitede Kiralık 3+1",
+      "konum": "Kozyatağı, Kadıköy",
+      "islem": "kiralik",
+      "tur": "konut",
+      "fiyat": 85000,
+      "oda": "3+1",
+      "banyo": "1",
+      "m2": 120,
+      "kat": "2 / 22",
+      "durum": "İkinci El",
+      "asansor": "Var",
+      "tapu": "",
+      "krediye": "",
+      "isitma": "Merkezi (Yakıt aidata dahil)",
+      "aidat": "10.000 ₺ (yaz-kış)",
+      "cephe": "",
+      "otopark": "",
+      "esyali": "",
+      "kullanim": "",
+      "danisman": "Aykan Uyanıktürk",
+      "danisman_tel": "+905323056656",
+      "depozito": "2 aylık kira",
+      "vip": false,
+      "etiket": "kozyatağı baytur havuzlu güvenlikli kiralık 3+1 site 24 saat güvenlik yüzme havuzu",
+      "aciklama": "Kozyatağı Baytur Sitesi'nde, yüzme havuzlu ve 24 saat güvenlikli prestijli bir sitede kiralık 3+1 daire. 22 katlı binanın 2. katında yer alan daire 120 m² kullanım alanına sahiptir. Aylık kira 85.000 ₺, depozito 2 aylık kiradır. Aidat yaz-kış 10.000 ₺ olup yakıt, güvenlik ve apartman görevlisi giderleri bu tutara dahildir. Site içi sosyal olanakları ve merkezi konumuyla konforlu bir yaşam sunar.",
+      "ozellikler": [
+        "Yüzme havuzlu site",
+        "24 saat güvenlik",
+        "120 m² geniş 3+1",
+        "Merkezi ısıtma (yakıt aidata dahil)",
+        "Aidat yaz-kış 10.000 ₺ (yakıt, güvenlik, görevli dahil)",
+        "Depozito: 2 aylık kira",
+        "Asansörlü",
+        "Site içi sosyal olanaklar"
+      ],
+      "harita_bbox": "29.087,40.969,29.111,40.982",
+      "harita_marker": "40.9755,29.0990",
+      "harita_arama": "Baytur Sitesi Kozyatağı Kadıköy İstanbul",
+      "fotolar": [
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80"
+      ]
     }
   ]
 }
