@@ -336,9 +336,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-top: 1px solid var(--line-soft);
   font-size: .95rem; color: var(--text); letter-spacing: .3px;
 }
+.footer-bottom .credit a { transition: color .2s var(--ease); }
 .footer-bottom .credit strong {
   color: var(--gold); font-weight: 700; letter-spacing: .8px;
 }
+.footer-bottom .credit a:hover strong { color: #ffffff; text-decoration: underline; }
 
 /* ============================================================
    SABİT BUTONLAR (WhatsApp + Instagram)
