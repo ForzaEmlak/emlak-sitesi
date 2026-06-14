@@ -100,8 +100,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .site-header.scrolled .header-inner { padding-block: 8px; }
 
 .logo { display: flex; align-items: center; flex-shrink: 0; }
-.logo-img { height: clamp(82px, 8vw, 124px); width: auto; display: block; transition: height .4s var(--ease); }
-.site-header.scrolled .logo-img { height: clamp(60px, 5.2vw, 86px); }
+.logo-img { height: clamp(68px, 6.4vw, 96px); width: auto; display: block; object-fit: contain; background: #fff; padding: 8px 12px; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,.28); transition: height .4s var(--ease); }
+.site-header.scrolled .logo-img { height: clamp(56px, 4.8vw, 76px); }
 
 .main-nav { display: flex; align-items: center; gap: 34px; }
 .main-nav a {
