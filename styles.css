@@ -319,7 +319,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ============================================================ */
 .site-footer { background: var(--bg); padding-top: 70px; border-top: 1px solid var(--line-soft); }
 .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 40px; padding-bottom: 50px; }
-.footer-logo .logo-img { height: 84px; }
+.footer-logo .logo-img { height: 120px; }
 .footer-slogan { margin-top: 16px; color: var(--gold); font-size: .8rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; }
 .footer-col p { margin-top: 16px; color: var(--muted); font-size: .92rem; }
 .footer-col p.footer-slogan { margin-top: 16px; }
