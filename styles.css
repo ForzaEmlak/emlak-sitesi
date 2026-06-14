@@ -331,6 +331,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .footer-social a:hover { color: var(--gold); border-color: var(--gold); transform: translateY(-2px); padding-left: 0; }
 .footer-bottom { border-top: 1px solid var(--line-soft); padding: 22px 0; }
 .footer-bottom p { font-size: .82rem; color: var(--muted-2); text-align: center; }
+.footer-bottom .credit { margin-top: 6px; font-size: .78rem; }
+.footer-bottom .credit strong { color: var(--gold); font-weight: 600; }
 
 /* ============================================================
    SABİT BUTONLAR (WhatsApp + Instagram)
@@ -448,9 +450,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero-right { padding-bottom: 0; }
   .features-grid { gap: 28px 0; }
   .feature:nth-child(odd) { border-left: none; }
+  .feature { justify-content: flex-start; }
 }
 @media (max-width: 560px) {
   .feature + .feature { border-left: none; }
+  .feature { width: 230px; margin-inline: auto; padding: 6px 0; }
 }
 /* Hamburger menü: yatay menü ancak geniş ekranda sığar */
 @media (max-width: 1080px) {
