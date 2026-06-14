@@ -100,8 +100,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .site-header.scrolled .header-inner { padding-block: 8px; }
 
 .logo { display: flex; align-items: center; flex-shrink: 0; }
-.logo-img { height: clamp(62px, 6vw, 96px); width: auto; display: block; transition: height .4s var(--ease); }
-.site-header.scrolled .logo-img { height: clamp(50px, 4.4vw, 72px); }
+.logo-img { height: clamp(82px, 8vw, 124px); width: auto; display: block; transition: height .4s var(--ease); }
+.site-header.scrolled .logo-img { height: clamp(60px, 5.2vw, 86px); }
 
 .main-nav { display: flex; align-items: center; gap: 34px; }
 .main-nav a {
@@ -479,7 +479,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .main-nav a.nav-cta { width: 100%; text-align: center; }
 }
 @media (max-width: 860px) {
-  .logo-img, .site-header.scrolled .logo-img { height: 58px; }
+  .logo-img, .site-header.scrolled .logo-img { height: 70px; }
   .hero-search { grid-template-columns: 1fr 1fr; }
   .hero-search .search-btn { grid-column: 1 / -1; padding: 14px; justify-content: center; }
   /* zaman çizelgesi tek sütun */
