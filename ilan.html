@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=21" />
+  <link rel="stylesheet" href="styles.css?v=22" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 <body class="detail-page">
@@ -19,7 +19,7 @@
   <header class="site-header scrolled" id="header">
     <div class="header-inner">
       <a href="index.html" class="logo" aria-label="Forza Gayrimenkul ana sayfa">
-        <img class="logo-img" src="assets/logo-dark.png?v=21" alt="Forza Gayrimenkul" />
+        <img class="logo-img" src="assets/logo-dark.png?v=22" alt="Forza Gayrimenkul" />
       </a>
       <nav class="main-nav" id="mainNav" aria-label="Ana menü">
         <a href="index.html#anasayfa">Ana Sayfa</a>
@@ -45,6 +45,8 @@
               <span class="gallery-count" id="galleryCount">1 / 1</span>
               <button class="gallery-all" id="galleryAll" type="button">⤢ Tüm Fotoğraflar</button>
               <img id="galleryMain" src="" alt="İlan fotoğrafı" />
+              <button class="gallery-nav prev" id="galleryPrev" type="button" aria-label="Önceki fotoğraf">‹</button>
+              <button class="gallery-nav next" id="galleryNext" type="button" aria-label="Sonraki fotoğraf">›</button>
             </div>
             <div class="gallery-thumbs" id="galleryThumbs"></div>
           </div>
@@ -86,7 +88,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col">
-        <a href="index.html" class="logo footer-logo"><img class="logo-img" src="assets/logo-dark.png?v=21" alt="Forza Emlak" /></a>
+        <a href="index.html" class="logo footer-logo"><img class="logo-img" src="assets/logo-dark.png?v=22" alt="Forza Emlak" /></a>
         <p class="footer-slogan">Prestijli Gayrimenkuller, Güvenilir Sonuçlar</p>
         <p>1999'dan günümüze güvenilir gayrimenkul danışmanlığı. İstanbul Anadolu Yakası'nda konut, yatırım, ticari gayrimenkul ve arsa.</p>
       </div>
@@ -100,7 +102,7 @@
         <p>Şube: Ayvalık / Balıkesir</p>
       </div>
     </div>
-    <div class="footer-bottom"><div class="container"><p>© 2026 Forza Gayrimenkul · Est. 1999 · Taşınmaz Ticareti Yetki Belgesi No: 3410522</p><p class="credit">Tasarım &amp; Geliştirme — <a href="https://www.instagram.com/atahan_bky/" target="_blank" rel="noopener"><strong>Atahan Bükey</strong></a></p></div></div>
+    <div class="footer-bottom"><div class="container"><p>© 2026 Forza Gayrimenkul · Est. 1999 · Taşınmaz Ticareti Yetki Belgesi No: 3410522</p><p class="credit">Tasarım &amp; Geliştirme — <a href="mailto:bukeybusiness@gmail.com" target="_blank" rel="noopener"><strong>Atahan Bükey</strong></a></p></div></div>
   </footer>
 
   <a class="ig-float" target="_blank" rel="noopener" href="https://www.instagram.com/forzagayrimenkul/" aria-label="Instagram"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.6" stroke="currentColor" stroke-width="1.9"/><circle cx="17.7" cy="6.3" r="1.4" fill="currentColor"/></svg></a>
@@ -130,20 +132,30 @@
       var count = document.getElementById("galleryCount");
       var current = 0, elements = [];
       if (fotolar.length) { main.src = fotolar[0]; count.textContent = "1 / " + fotolar.length; }
+      function goTo(idx){
+        if (!fotolar.length) return;
+        current = (idx + fotolar.length) % fotolar.length;
+        main.src = fotolar[current];
+        count.textContent = (current+1) + " / " + fotolar.length;
+        var act = thumbs.querySelector(".thumb.active"); if (act) act.classList.remove("active");
+        var nb = thumbs.children[current];
+        if (nb){ nb.classList.add("active"); nb.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"}); }
+      }
       fotolar.forEach(function(src, i){
         elements.push({ href: src, type: "image" });
         var b = document.createElement("button");
         b.className = "thumb" + (i===0?" active":"");
         b.dataset.src = src; b.dataset.idx = i+1;
         b.innerHTML = '<img src="'+src+'" loading="lazy" alt="Fotoğraf '+(i+1)+'">';
-        b.addEventListener("click", function(){
-          thumbs.querySelector(".thumb.active") && thumbs.querySelector(".thumb.active").classList.remove("active");
-          this.classList.add("active"); main.src=this.dataset.src; current=(+this.dataset.idx)-1;
-          count.textContent = this.dataset.idx + " / " + fotolar.length;
-          this.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"});
-        });
+        b.addEventListener("click", function(){ goTo(i); });
         thumbs.appendChild(b);
       });
+      var prevBtn = document.getElementById("galleryPrev"), nextBtn = document.getElementById("galleryNext");
+      if (fotolar.length > 1) {
+        prevBtn.addEventListener("click", function(e){ e.stopPropagation(); goTo(current-1); });
+        nextBtn.addEventListener("click", function(e){ e.stopPropagation(); goTo(current+1); });
+        document.addEventListener("keydown", function(e){ if(e.key==="ArrowLeft") goTo(current-1); else if(e.key==="ArrowRight") goTo(current+1); });
+      } else { prevBtn.style.display="none"; nextBtn.style.display="none"; }
       var lb = (typeof GLightbox!=="undefined" && elements.length) ? GLightbox({elements:elements, loop:true}) : null;
       if (lb){ main.style.cursor="zoom-in"; main.addEventListener("click", function(){ lb.openAt(current); }); document.getElementById("galleryAll").addEventListener("click", function(){ lb.openAt(current); }); lb.on("slide_changed", function(d){ current=d.current.index; count.textContent=(current+1)+" / "+fotolar.length; }); }
       document.getElementById("galleryAll").textContent = "⤢ Tüm Fotoğraflar (" + fotolar.length + ")";
@@ -208,6 +220,6 @@
     }).catch(function(){ document.getElementById("detailContent").style.display="none"; document.getElementById("notFound").hidden=false; });
   })();
   </script>
-  <script src="script.js?v=21"></script>
+  <script src="script.js?v=22"></script>
 </body>
 </html>
