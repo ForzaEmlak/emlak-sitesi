@@ -88,7 +88,7 @@
             <div class="row3">
               <div><label>İşlem</label><select name="islem"><option value="satilik">Satılık</option><option value="kiralik">Kiralık</option></select></div>
               <div><label>Tür</label><select name="tur"><option value="konut">Konut</option><option value="ofis">Ofis</option><option value="arsa">Arsa</option></select></div>
-              <div><label>Danışman</label><select name="danisman"><option>Aykan Uyanıktürk</option><option>Aydan Münevver</option><option>Hatica Dede</option><option>Barış Aydemir</option></select></div>
+              <div><label>Danışman</label><select name="danisman"><option>Aykan Uyanıktürk</option><option>Aydan Münevver</option><option>Hatice Dede</option><option>Barış Aydemir</option></select></div>
             </div>
             <div class="row3">
               <div><label>Oda</label><input name="oda" placeholder="3+1" /></div>
@@ -147,7 +147,7 @@
     var REPO = "ForzaEmlak/emlak-sitesi", BRANCH = "main", API = "https://api.github.com/repos/" + REPO + "/contents/";
     var token = sessionStorage.getItem("forza_gh_token") || null;
     var data = { ilanlar: [] }, jsonSha = null, editId = null, existingFotos = [], newFiles = [];
-    var TEL = { "Aykan Uyanıktürk":"+905323056656", "Aydan Münevver":"+905324246248", "Hatica Dede":"+905339657711", "Barış Aydemir":"+905072521092" };
+    var TEL = { "Aykan Uyanıktürk":"+905323056656", "Aydan Münevver":"+905324246248", "Hatice Dede":"+905339657711", "Barış Aydemir":"+905072521092" };
 
     var $ = function(id){ return document.getElementById(id); };
     function status(msg, ok){ var s=$("status"); s.textContent=msg; s.style.display="block"; s.style.borderColor = ok===false ? "#e08a8a" : "var(--gold)"; if(ok!==null){ clearTimeout(s._t); s._t=setTimeout(function(){s.style.display="none";}, ok===false?6000:3000); } }
