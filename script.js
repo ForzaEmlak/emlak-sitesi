@@ -14,9 +14,16 @@
   const bathSVG = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M6 12V6a2 2 0 0 1 2-2 2 2 0 0 1 2 2"/></svg>';
   const areaSVG = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 3v18"/></svg>';
 
+  function priceText(raw) {
+    raw = (raw == null ? "" : String(raw)).trim();
+    if (!raw || raw === "0") return "Fiyat için arayınız";
+    if (/^\d+$/.test(raw)) return Number(raw).toLocaleString("tr-TR") + " ₺";   // sadece rakam -> formatla
+    if (/^[\d.,\s]+$/.test(raw)) return raw + " ₺";                              // 695.000 gibi -> aynen + ₺
+    return raw;                                                                  // serbest metin -> aynen
+  }
   function fmtFiyat(il) {
-    const n = Number(il.fiyat || 0).toLocaleString("tr-TR");
-    return il.islem === "kiralik" ? `${n} ₺ <span style="color:var(--muted)">/ ay</span>` : `${n} ₺`;
+    const d = priceText(il.fiyat);
+    return il.islem === "kiralik" ? `${d} <span style="color:var(--muted)">/ ay</span>` : d;
   }
   function metaHTML(il) {
     if (il.tur === "arsa" || il.tur === "ofis") return `<span>${areaSVG} ${il.m2} m²</span>`;

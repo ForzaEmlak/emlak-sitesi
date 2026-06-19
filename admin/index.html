@@ -157,6 +157,7 @@
     function b64e(str){ return btoa(unescape(encodeURIComponent(str))); }
     function b64d(b64){ return decodeURIComponent(escape(atob(b64.replace(/\n/g,"")))); }
     function fmt(n){ return Number(n||0).toLocaleString("tr-TR"); }
+    function priceText(raw){ raw=(raw==null?"":String(raw)).trim(); if(!raw||raw==="0") return "Fiyat için arayınız"; if(/^\d+$/.test(raw)) return Number(raw).toLocaleString("tr-TR")+" ₺"; if(/^[\d.,\s]+$/.test(raw)) return raw+" ₺"; return raw; }
     function slug(s){ return (s||"ilan").toLowerCase().replace(/ğ/g,"g").replace(/ü/g,"u").replace(/ş/g,"s").replace(/ı/g,"i").replace(/ö/g,"o").replace(/ç/g,"c").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40); }
 
     /* ---- GitHub OAuth (Netlify provider) ---- */
@@ -241,10 +242,6 @@
     $("logoutBtn").addEventListener("click", logout);
     $("resetBtn").addEventListener("click", clearForm);
 
-    $("fiyatInput").addEventListener("input", function(){
-      var d = this.value.replace(/\D/g,"");
-      this.value = d ? Number(d).toLocaleString("tr-TR") : "";
-    });
     $("fotoInput").addEventListener("change", function(e){
       Array.from(e.target.files).forEach(function(f){ newFiles.push(f); });
       e.target.value=""; renderThumbs();
@@ -259,7 +256,7 @@
     function renderList(){
       var arr = data.ilanlar||[]; $("count").textContent = arr.length;
       $("list").innerHTML = arr.length ? arr.map(function(x,i){
-        return '<div class="item"><div><h3>'+(x.baslik||"-")+'</h3><p>'+(x.konum||"")+" · "+(x.islem==="kiralik"?"Kiralık":"Satılık")+" · "+(x.oda||"")+'</p><div class="price">'+fmt(x.fiyat)+' ₺</div><p style="margin-top:3px">'+((x.fotolar||[]).length)+' foto · '+(x.danisman||"")+'</p></div>'+
+        return '<div class="item"><div><h3>'+(x.baslik||"-")+'</h3><p>'+(x.konum||"")+" · "+(x.islem==="kiralik"?"Kiralık":"Satılık")+" · "+(x.oda||"")+'</p><div class="price">'+priceText(x.fiyat)+'</div><p style="margin-top:3px">'+((x.fotolar||[]).length)+' foto · '+(x.danisman||"")+'</p></div>'+
           '<div class="item-actions"><button class="btn ghost sm" data-edit="'+i+'">Düzenle</button><button class="btn ghost sm" data-del="'+i+'">Sil</button></div></div>';
       }).join("") : '<p class="empty">Henüz ilan yok.</p>';
       $("list").querySelectorAll("[data-edit]").forEach(function(b){ b.onclick=function(){ editItem(+b.dataset.edit); }; });
@@ -268,8 +265,8 @@
     function editItem(i){
       var x = data.ilanlar[i]; if(!x) return; editId = x.id;
       Object.keys(x).forEach(function(k){ if(form.elements[k]!==undefined && typeof x[k]!=="object") form.elements[k].value = x[k]; });
-      // fiyat: binlik ayraçlı göster
-      if(form.elements["fiyat"]) form.elements["fiyat"].value = x.fiyat ? Number(x.fiyat).toLocaleString("tr-TR") : "";
+      // fiyat: kaydedildiği gibi göster
+      if(form.elements["fiyat"]) form.elements["fiyat"].value = (x.fiyat==null?"":x.fiyat);
       // il/ilçe/mahalle: kayıtlıysa kullan, değilse konum'dan ayrıştır
       if(x.il || x.ilce || x.mahalle){
         form.elements["il"].value = x.il||""; form.elements["ilce"].value = x.ilce||""; form.elements["mahalle"].value = x.mahalle||"";
@@ -300,8 +297,8 @@
       if(o.mahalle && o.mahalle.trim()) parts.push(o.mahalle.trim());
       if(o.ilce && o.ilce.trim()) parts.push(o.ilce.trim());
       o.konum = parts.join(", ") + (o.il && o.il.trim() ? (parts.length?" / ":"")+o.il.trim() : "");
-      // Fiyat: noktaları/harfleri at, sayıya çevir
-      o.fiyat = parseInt((""+(o.fiyat||"")).replace(/\D/g,""),10)||0;
+      // Fiyat: ne yazıldıysa aynen sakla (serbest metin)
+      o.fiyat = (""+(o.fiyat||"")).trim();
       if(!o.baslik || !(o.ilce && o.ilce.trim()) || !o.fiyat){ status("Başlık, ilçe ve fiyat zorunlu.", false); return; }
       if(o.m2) o.m2 = parseInt((""+o.m2).replace(/\D/g,""),10)||"";
       o.vip = (o.vip==="true");

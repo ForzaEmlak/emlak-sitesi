@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=28" />
+  <link rel="stylesheet" href="styles.css?v=29" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 <body class="detail-page">
@@ -19,7 +19,7 @@
   <header class="site-header scrolled" id="header">
     <div class="header-inner">
       <a href="index.html" class="logo" aria-label="Forza Gayrimenkul ana sayfa">
-        <img class="logo-img" src="assets/logo-dark.png?v=28" alt="Forza Gayrimenkul" />
+        <img class="logo-img" src="assets/logo-dark.png?v=29" alt="Forza Gayrimenkul" />
       </a>
       <nav class="main-nav" id="mainNav" aria-label="Ana menü">
         <a href="index.html#anasayfa">Ana Sayfa</a>
@@ -88,7 +88,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col">
-        <a href="index.html" class="logo footer-logo"><img class="logo-img" src="assets/logo-dark.png?v=28" alt="Forza Emlak" /></a>
+        <a href="index.html" class="logo footer-logo"><img class="logo-img" src="assets/logo-dark.png?v=29" alt="Forza Emlak" /></a>
         <p class="footer-slogan">Prestijli Gayrimenkuller, Güvenilir Sonuçlar</p>
         <p>1999'dan günümüze güvenilir gayrimenkul danışmanlığı. İstanbul Anadolu Yakası'nda konut, yatırım, ticari gayrimenkul ve arsa.</p>
       </div>
@@ -117,6 +117,7 @@
     function tel(p){ var d=(p||"").replace(/\D/g,"").slice(-10); return d.length===10 ? "("+d.slice(0,3)+") "+d.slice(3,6)+" "+d.slice(6,8)+" "+d.slice(8) : p; }
     function initials(n){ return (n||"").split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase(); }
     function fmt(n){ return Number(n||0).toLocaleString("tr-TR"); }
+    function priceText(raw){ raw=(raw==null?"":String(raw)).trim(); if(!raw||raw==="0") return "Fiyat için arayınız"; if(/^\d+$/.test(raw)) return Number(raw).toLocaleString("tr-TR")+" ₺"; if(/^[\d.,\s]+$/.test(raw)) return raw+" ₺"; return raw; }
 
     fetch("ilanlar.json", { cache: "no-store" }).then(r=>r.json()).then(function(data){
       var list = (data && data.ilanlar) || [];
@@ -164,11 +165,11 @@
       // Özet
       document.getElementById("dLoc").textContent = "📍 " + il.konum;
       document.getElementById("dTitle").textContent = il.baslik;
-      document.getElementById("dPrice").innerHTML = fmt(il.fiyat) + " ₺" + (il.islem==="kiralik"?' <span style="font-size:1rem;color:var(--muted)">/ ay</span>':"");
+      document.getElementById("dPrice").innerHTML = priceText(il.fiyat) + (il.islem==="kiralik"?' <span style="font-size:1rem;color:var(--muted)">/ ay</span>':"");
       var quick = [["Oda", il.oda], ["Net Alan", il.m2 ? il.m2+" m²":""], ["Kat", il.kat], ["Durum", il.durum]].filter(q=>q[1]);
       document.getElementById("dQuick").innerHTML = quick.map(q=>'<div><span>'+q[0]+'</span><b>'+q[1]+'</b></div>').join("");
       var p = il.danisman_tel || "+905323056656";
-      var waMsg = encodeURIComponent("Merhaba, " + il.baslik + " (" + fmt(il.fiyat) + " ₺) ilanı hakkında bilgi almak istiyorum.");
+      var waMsg = encodeURIComponent("Merhaba, " + il.baslik + " (" + priceText(il.fiyat) + ") ilanı hakkında bilgi almak istiyorum.");
       document.getElementById("dActions").innerHTML =
         '<a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+p.replace(/\D/g,"")+'?text='+waMsg+'">WhatsApp ile Sor</a>'+
         '<a class="btn btn-ghost" href="tel:'+p+'">'+tel(p)+' · Ara</a>'+
@@ -220,6 +221,6 @@
     }).catch(function(){ document.getElementById("detailContent").style.display="none"; document.getElementById("notFound").hidden=false; });
   })();
   </script>
-  <script src="script.js?v=28"></script>
+  <script src="script.js?v=29"></script>
 </body>
 </html>
