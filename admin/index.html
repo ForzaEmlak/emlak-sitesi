@@ -81,10 +81,13 @@
           <form id="ilanForm">
             <label>Başlık</label>
             <input name="baslik" required placeholder="Suadiye'de 3+1 Lüks Daire" />
-            <div class="row">
-              <div><label>Konum</label><input name="konum" required placeholder="Suadiye, Kadıköy" /></div>
-              <div><label>Fiyat (₺)</label><input name="fiyat" type="number" required placeholder="32000000" /></div>
+            <div class="row3">
+              <div><label>İl</label><input name="il" placeholder="İstanbul" /></div>
+              <div><label>İlçe</label><input name="ilce" required placeholder="Kadıköy" /></div>
+              <div><label>Mahalle / Semt</label><input name="mahalle" placeholder="Suadiye" /></div>
             </div>
+            <label>Fiyat (₺)</label>
+            <input name="fiyat" id="fiyatInput" type="text" inputmode="numeric" required placeholder="32.000.000" />
             <div class="row3">
               <div><label>İşlem</label><select name="islem"><option value="satilik">Satılık</option><option value="kiralik">Kiralık</option></select></div>
               <div><label>Tür</label><select name="tur"><option value="konut">Konut</option><option value="ofis">Ofis</option><option value="arsa">Arsa</option></select></div>
@@ -202,6 +205,28 @@
         .then(function(r){ if(!r.ok) return r.text().then(function(t){ throw new Error("Foto yüklenemedi: "+t); }); return r.json(); });
     }
     function readFileB64(file){ return new Promise(function(res,rej){ var rd=new FileReader(); rd.onload=function(){ res(rd.result.split(",")[1]); }; rd.onerror=rej; rd.readAsDataURL(file); }); }
+    /* Büyük fotoğrafları yüklemeden önce küçült + sıkıştır (GitHub API hatasını önler) */
+    function resizeToB64(file, maxDim, quality){
+      return new Promise(function(res, rej){
+        var rd = new FileReader();
+        rd.onload = function(){
+          var img = new Image();
+          img.onload = function(){
+            try{
+              var w = img.width, h = img.height;
+              if(w > maxDim || h > maxDim){ if(w >= h){ h = Math.round(h*maxDim/w); w = maxDim; } else { w = Math.round(w*maxDim/h); h = maxDim; } }
+              var c = document.createElement("canvas"); c.width = w; c.height = h;
+              c.getContext("2d").drawImage(img, 0, 0, w, h);
+              res(c.toDataURL("image/jpeg", quality||0.82).split(",")[1]);
+            }catch(err){ rej(err); }
+          };
+          img.onerror = function(){ rej(new Error("Görsel okunamadı")); };
+          img.src = rd.result;
+        };
+        rd.onerror = rej;
+        rd.readAsDataURL(file);
+      });
+    }
 
     /* ---- UI ---- */
     var form = $("ilanForm"), thumbsEl = $("thumbs");
@@ -209,6 +234,10 @@
     $("logoutBtn").addEventListener("click", logout);
     $("resetBtn").addEventListener("click", clearForm);
 
+    $("fiyatInput").addEventListener("input", function(){
+      var d = this.value.replace(/\D/g,"");
+      this.value = d ? Number(d).toLocaleString("tr-TR") : "";
+    });
     $("fotoInput").addEventListener("change", function(e){
       Array.from(e.target.files).forEach(function(f){ newFiles.push(f); });
       e.target.value=""; renderThumbs();
@@ -232,6 +261,16 @@
     function editItem(i){
       var x = data.ilanlar[i]; if(!x) return; editId = x.id;
       Object.keys(x).forEach(function(k){ if(form.elements[k]!==undefined && typeof x[k]!=="object") form.elements[k].value = x[k]; });
+      // fiyat: binlik ayraçlı göster
+      if(form.elements["fiyat"]) form.elements["fiyat"].value = x.fiyat ? Number(x.fiyat).toLocaleString("tr-TR") : "";
+      // il/ilçe/mahalle: kayıtlıysa kullan, değilse konum'dan ayrıştır
+      if(x.il || x.ilce || x.mahalle){
+        form.elements["il"].value = x.il||""; form.elements["ilce"].value = x.ilce||""; form.elements["mahalle"].value = x.mahalle||"";
+      } else if(x.konum){
+        var seg = (""+x.konum).split("/"); var ilv=(seg[1]||"").trim();
+        var lp = (seg[0]||"").split(",").map(function(s){return s.trim();});
+        form.elements["mahalle"].value = lp[0]||""; form.elements["ilce"].value = lp[1]||lp[0]||""; form.elements["il"].value = ilv;
+      }
       form.elements["vip"].value = x.vip ? "true":"false";
       form.elements["ozellikler"].value = (x.ozellikler||[]).join("\n");
       existingFotos = (x.fotolar||[]).slice(); newFiles=[]; renderThumbs();
@@ -249,22 +288,39 @@
       e.preventDefault();
       var fd = new FormData(form), o = {};
       fd.forEach(function(v,k){ o[k]=v; });
-      if(!o.baslik || !o.konum || !o.fiyat){ status("Başlık, konum ve fiyat zorunlu.", false); return; }
-      o.fiyat = parseInt(o.fiyat,10)||0; if(o.m2) o.m2 = parseInt(o.m2,10)||"";
+      // İl / İlçe / Mahalle -> konum
+      var parts=[];
+      if(o.mahalle && o.mahalle.trim()) parts.push(o.mahalle.trim());
+      if(o.ilce && o.ilce.trim()) parts.push(o.ilce.trim());
+      o.konum = parts.join(", ") + (o.il && o.il.trim() ? (parts.length?" / ":"")+o.il.trim() : "");
+      // Fiyat: noktaları/harfleri at, sayıya çevir
+      o.fiyat = parseInt((""+(o.fiyat||"")).replace(/\D/g,""),10)||0;
+      if(!o.baslik || !(o.ilce && o.ilce.trim()) || !o.fiyat){ status("Başlık, ilçe ve fiyat zorunlu.", false); return; }
+      if(o.m2) o.m2 = parseInt((""+o.m2).replace(/\D/g,""),10)||"";
       o.vip = (o.vip==="true");
       o.ozellikler = (o.ozellikler||"").split("\n").map(function(s){return s.trim();}).filter(Boolean);
       o.danisman_tel = TEL[o.danisman] || "+905323056656";
       o.id = editId || (slug(o.baslik) + "-" + Date.now().toString().slice(-4));
 
-      $("saveBtn").disabled=true; status("Yayınlanıyor... (fotoğraflar yükleniyor)", null);
+      $("saveBtn").disabled=true;
       var folder = "assets/ilanlar/" + o.id;
       var startIdx = existingFotos.length;
-      var uploads = newFiles.map(function(f, i){
-        var path = folder + "/" + (startIdx+i+1) + ".jpg";
-        return readFileB64(f).then(function(b64){ return putPhoto(path, b64, "Foto: "+o.id); }).then(function(){ return path; });
+      var paths = existingFotos.slice();
+      var total = newFiles.length;
+      // Fotoğrafları sırayla (küçültülmüş) yükle
+      var seq = Promise.resolve();
+      newFiles.forEach(function(f, i){
+        seq = seq.then(function(){
+          status("Fotoğraf yükleniyor "+(i+1)+"/"+total+"...", null);
+          var path = folder + "/" + (startIdx+i+1) + ".jpg";
+          return resizeToB64(f, 1600, 0.82)
+            .then(function(b64){ return putPhoto(path, b64, "Foto: "+o.id); })
+            .then(function(){ paths.push(path); });
+        });
       });
-      Promise.all(uploads).then(function(paths){
-        o.fotolar = existingFotos.concat(paths);
+      seq.then(function(){
+        o.fotolar = paths;
+        status("İlan kaydediliyor...", null);
         return getJson().then(function(fresh){
           data = fresh || {ilanlar:[]}; if(!data.ilanlar) data.ilanlar=[];
           var idx = data.ilanlar.findIndex(function(x){ return x.id===o.id; });
@@ -274,7 +330,7 @@
       }).then(function(){
         status("✓ Yayınlandı! Site 1-2 dakikada güncellenecek.", true);
         clearForm(); renderList(); $("saveBtn").disabled=false;
-      }).catch(function(err){ status(err.message||"Hata oluştu", false); $("saveBtn").disabled=false; });
+      }).catch(function(err){ status((err&&err.message)||"Hata oluştu", false); $("saveBtn").disabled=false; });
     });
 
     /* ---- başlat ---- */
