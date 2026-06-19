@@ -93,20 +93,42 @@
     });
   });
 
+  /* Konum (İl/İlçe/Semt) — verilerden kademeli */
+  function norm(s){ return (s == null ? "" : String(s)).toLocaleLowerCase("tr").trim(); }
+  function deriveLoc(x){
+    const il = (x.il && String(x.il).trim()) ? String(x.il).trim() : "İstanbul";
+    const before = String(x.konum || "").split("/")[0];
+    const cp = before.split(",").map(s => s.trim()).filter(Boolean);
+    const ilce = (x.ilce && String(x.ilce).trim()) ? String(x.ilce).trim() : (cp[1] || cp[0] || "");
+    const semt = (x.mahalle && String(x.mahalle).trim()) ? String(x.mahalle).trim() : (cp.length > 1 ? cp[0] : "");
+    return { il, ilce, semt };
+  }
+  function uniqBy(list){ const seen = {}, out = []; list.forEach(v => { if (v && !seen[norm(v)]) { seen[norm(v)] = 1; out.push(v); } }); return out.sort((a, b) => a.localeCompare(b, "tr")); }
+  function fillSelect(sel, items){ if (!sel) return; sel.innerHTML = '<option value="">Tümü</option>' + items.map(v => `<option value="${v.replace(/"/g, "&quot;")}">${v}</option>`).join(""); }
+  const ilSel = document.getElementById("f-il"), ilceSel = document.getElementById("f-ilce"), semtSel = document.getElementById("f-semt");
+  function refreshIlce(){ const il = ilSel ? ilSel.value : ""; fillSelect(ilceSel, uniqBy(ILANLAR.filter(x => !il || norm(deriveLoc(x).il) === norm(il)).map(x => deriveLoc(x).ilce))); refreshSemt(); }
+  function refreshSemt(){ const il = ilSel ? ilSel.value : "", ilce = ilceSel ? ilceSel.value : ""; fillSelect(semtSel, uniqBy(ILANLAR.filter(x => { const L = deriveLoc(x); return (!il || norm(L.il) === norm(il)) && (!ilce || norm(L.ilce) === norm(ilce)); }).map(x => deriveLoc(x).semt))); }
+  function initLocationFilters(){
+    if (ilSel) fillSelect(ilSel, uniqBy(ILANLAR.map(x => deriveLoc(x).il)));
+    refreshIlce();
+    if (ilSel) ilSel.addEventListener("change", refreshIlce);
+    if (ilceSel) ilceSel.addEventListener("change", refreshSemt);
+  }
+
   /* Arama */
   const searchBoxEl = document.getElementById("searchBox");
   if (searchBoxEl) searchBoxEl.addEventListener("submit", e => {
     e.preventDefault();
     const islem = document.getElementById("f-islem").value;
     const tur = document.getElementById("f-tur").value;
-    const konum = document.getElementById("f-konum").value;
-    const kelime = document.getElementById("f-kelime").value.trim().toLowerCase();
-    const map = { kadikoy: "kadıköy", besiktas: "beşiktaş", sariyer: "sarıyer", atasehir: "ataşehir", ayvalik: "ayvalık" };
-    const sonuc = ILANLAR.filter(il => {
-      if (islem && il.islem !== islem) return false;
-      if (tur && il.tur !== tur) return false;
-      if (konum && !il.konum.toLowerCase().includes(map[konum] || konum)) return false;
-      if (kelime) { const h = (il.baslik + " " + (il.etiket || "") + " " + il.konum).toLowerCase(); if (!h.includes(kelime)) return false; }
+    const il = ilSel ? ilSel.value : "", ilce = ilceSel ? ilceSel.value : "", semt = semtSel ? semtSel.value : "";
+    const sonuc = ILANLAR.filter(x => {
+      if (islem && x.islem !== islem) return false;
+      if (tur && x.tur !== tur) return false;
+      const L = deriveLoc(x);
+      if (il && norm(L.il) !== norm(il)) return false;
+      if (ilce && norm(L.ilce) !== norm(ilce)) return false;
+      if (semt && norm(L.semt) !== norm(semt)) return false;
       return true;
     });
     document.querySelector(".filter-tabs .tab.active")?.classList.remove("active");
@@ -162,6 +184,6 @@
   /* İlanları yükle */
   fetch("ilanlar.json", { cache: "no-store" })
     .then(r => r.json())
-    .then(d => { ILANLAR = (d && d.ilanlar) ? d.ilanlar : []; uygula(); })
+    .then(d => { ILANLAR = (d && d.ilanlar) ? d.ilanlar : []; uygula(); initLocationFilters(); })
     .catch(() => { if (noResult) { noResult.hidden = false; noResult.textContent = "İlanlar yüklenemedi."; } });
 })();
