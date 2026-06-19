@@ -1,38 +1,6 @@
 {
   "ilanlar": [
     {
-      "baslik": "Forza'dan Çiftehavuzlar'da Katta tek süper lüks",
-      "konum": "Çiftehavuzlar",
-      "fiyat": 39000000,
-      "islem": "satilik",
-      "tur": "konut",
-      "danisman": "Aykan Uyanıktürk",
-      "oda": "4+1",
-      "banyo": "2",
-      "m2": 185,
-      "kat": "6/4",
-      "isitma": "kombi",
-      "aidat": "2500",
-      "durum": "ikinci el",
-      "cephe": "güney,batı",
-      "otopark": "Açık",
-      "asansor": "var",
-      "tapu": "kat mülkiyeti",
-      "krediye": "evet",
-      "esyali": "hayır",
-      "kullanim": "boş",
-      "harita_arama": "ÇİFTEHAVUZLAR TEPEGÖZ SOKAK",
-      "vip": false,
-      "aciklama": "🏡 KATTA TEK SATILIK ÖZEL DAİRE\n\n📍 Geniş yaşam alanları, lüks dekorasyonu ve nadir bulunan mimarisiyle öne çıkan bu özel daire, konforlu ve prestijli bir yaşam arayanlar için kaçırılmayacak bir fırsat sunuyor.\n\n✨ DAİRE ÖZELLİKLERİ\n\n▪️ 4+1 Oda Planı\n▪️ 180 m² Net Kullanım Alanı\n▪️ 48 m² Geniş ve Ferah Salon\n▪️ 35 m² Kiler Odalı Büyük Mutfak\n▪️ 30 m² Ebeveyn Süiti\n▪️ Ebeveyn Banyosu Dahil Toplam 3 Banyo\n▪️ 2 Balkon\n▪️ Ayrı Kiler Odası\n▪️ Çamaşır ve Kurutma Makinesi Odası\n▪️ 2 Adet Viessmann Klima\n▪️ Şömine\n▪️ Asansörlü Bina\n▪️ Açık Otopark\n▪️ Lüks ve Özel Dekorasyon\n\n🏢 BİNA ÖZELLİKLERİ\n\n▪️ 1993 Yapımı\n▪️ 613 m² Arsa Üzerine Kurulu\n▪️ Toplam 6 Daireden Oluşan Butik Apartman\n▪️ Az Katlı ve Nezih Komşuluk Yapısı\n\n🌟 Büyük metrekareleri, fonksiyonel kullanım alanları, şömineli salonu ve butik apartman avantajıyla bölgesinde benzeri zor bulunan özel bir dairedir.\n\n📞 Detaylı Bilgi ve Randevu\n\nFORZA GAYRİMENKUL\n0532 305 66 56",
-      "ozellikler": [
-        "KOMPLE DEKORLU",
-        "SÜPER LÜKS"
-      ],
-      "danisman_tel": "+905323056656",
-      "id": "forza-dan-ciftehavuzlar-da-katta-tek-sup-4027",
-      "fotolar": []
-    },
-    {
       "id": "suadiye-3-1",
       "baslik": "Suadiye'de Bağdat Caddesine 3. Binada 3+1",
       "konum": "Suadiye, Kadıköy",
