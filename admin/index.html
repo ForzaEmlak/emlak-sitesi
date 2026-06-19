@@ -202,7 +202,14 @@
     }
     function putPhoto(path, b64, msg){
       return gh(path, { method:"PUT", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ message: msg, content: b64, branch: BRANCH }) })
-        .then(function(r){ if(!r.ok) return r.text().then(function(t){ throw new Error("Foto yüklenemedi: "+t); }); return r.json(); });
+        .then(function(r){ if(!r.ok) return r.text().then(function(t){ var e=new Error("Foto yüklenemedi ("+r.status+")"); e.status=r.status; e.detail=t; throw e; }); return r.json(); });
+    }
+    function delay(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+    function putPhotoRetry(path, b64, msg, tries){
+      return putPhoto(path, b64, msg).catch(function(e){
+        if(tries>0){ return delay(2000).then(function(){ return putPhotoRetry(path, b64, msg, tries-1); }); }
+        throw e;
+      });
     }
     function readFileB64(file){ return new Promise(function(res,rej){ var rd=new FileReader(); rd.onload=function(){ res(rd.result.split(",")[1]); }; rd.onerror=rej; rd.readAsDataURL(file); }); }
     /* Büyük fotoğrafları yüklemeden önce küçült + sıkıştır (GitHub API hatasını önler) */
@@ -220,7 +227,7 @@
               res(c.toDataURL("image/jpeg", quality||0.82).split(",")[1]);
             }catch(err){ rej(err); }
           };
-          img.onerror = function(){ rej(new Error("Görsel okunamadı")); };
+          img.onerror = function(){ rej(new Error("Fotoğraf okunamadı (iPhone HEIC olabilir — JPG olarak gönderin)")); };
           img.src = rd.result;
         };
         rd.onerror = rej;
@@ -313,9 +320,10 @@
         seq = seq.then(function(){
           status("Fotoğraf yükleniyor "+(i+1)+"/"+total+"...", null);
           var path = folder + "/" + (startIdx+i+1) + ".jpg";
-          return resizeToB64(f, 1600, 0.82)
-            .then(function(b64){ return putPhoto(path, b64, "Foto: "+o.id); })
-            .then(function(){ paths.push(path); });
+          return resizeToB64(f, 1280, 0.8)
+            .then(function(b64){ return putPhotoRetry(path, b64, "Foto: "+o.id, 2); })
+            .then(function(){ paths.push(path); return delay(700); })
+            .catch(function(e){ throw new Error((i+1)+". fotoğraf: " + ((e&&e.message)||"yüklenemedi")); });
         });
       });
       seq.then(function(){
