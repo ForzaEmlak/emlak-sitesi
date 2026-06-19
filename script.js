@@ -167,18 +167,23 @@
     nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
   }
 
-  /* Form (Netlify) */
+  /* Form → WhatsApp'a yönlendir (statik sitede güvenilir teslimat) */
   const form = document.getElementById("contactForm");
   const status = document.getElementById("formStatus");
   if (form) form.addEventListener("submit", e => {
     e.preventDefault();
-    const ad = form.ad.value.trim(), tel = form.tel.value.trim(), email = form.email.value.trim();
+    const ad = form.ad.value.trim(), tel = form.tel.value.trim(), email = form.email.value.trim(), mesaj = (form.mesaj ? form.mesaj.value.trim() : "");
     if (!ad || !tel || !email) { status.textContent = "Lütfen zorunlu alanları doldurun."; status.className = "form-status err"; return; }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { status.textContent = "Geçerli bir e-posta adresi girin."; status.className = "form-status err"; return; }
-    status.textContent = "Gönderiliyor..."; status.className = "form-status";
-    fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() })
-      .then(() => { status.textContent = "Teşekkürler " + ad + "! Talebiniz alındı, en kısa sürede dönüş yapacağız."; status.className = "form-status ok"; form.reset(); })
-      .catch(() => { status.textContent = "Bir sorun oluştu. Lütfen telefonla ulaşın: (532) 305 66 56"; status.className = "form-status err"; });
+    const metin = "Forza Gayrimenkul — Web Sitesi İletişim Talebi%0A%0A"
+      + "Ad Soyad: " + encodeURIComponent(ad) + "%0A"
+      + "Telefon: " + encodeURIComponent(tel) + "%0A"
+      + "E-posta: " + encodeURIComponent(email) + "%0A"
+      + "Mesaj: " + encodeURIComponent(mesaj || "-");
+    window.open("https://wa.me/905323056656?text=" + metin, "_blank");
+    status.textContent = "Teşekkürler " + ad + "! Talebiniz WhatsApp üzerinden iletiliyor. Açılan pencereden gönderebilirsiniz.";
+    status.className = "form-status ok";
+    form.reset();
   });
 
   /* İlanları yükle */
