@@ -311,15 +311,15 @@
 
       $("saveBtn").disabled=true;
       var folder = "assets/ilanlar/" + o.id;
-      var startIdx = existingFotos.length;
       var paths = existingFotos.slice();
       var total = newFiles.length;
-      // Fotoğrafları sırayla (küçültülmüş) yükle
+      var stamp = Date.now().toString(36);
+      // Fotoğrafları sırayla (küçültülmüş) yükle — benzersiz isim, çakışma olmaz
       var seq = Promise.resolve();
       newFiles.forEach(function(f, i){
         seq = seq.then(function(){
           status("Fotoğraf yükleniyor "+(i+1)+"/"+total+"...", null);
-          var path = folder + "/" + (startIdx+i+1) + ".jpg";
+          var path = folder + "/" + stamp + "-" + (i+1) + ".jpg";
           return resizeToB64(f, 1280, 0.8)
             .then(function(b64){ return putPhotoRetry(path, b64, "Foto: "+o.id, 2); })
             .then(function(){ paths.push(path); return delay(700); })
