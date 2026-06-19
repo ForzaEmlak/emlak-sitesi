@@ -250,6 +250,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .card-share:hover { background: var(--navy); transform: translateY(-2px); }
 .card-body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; padding: 24px 22px; }
+/* Akan haber bandı */
+.ticker { display: flex; align-items: stretch; background: var(--bg-2); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); overflow: hidden; }
+.ticker-tag { flex: none; display: flex; align-items: center; background: var(--navy); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 0 18px; }
+.ticker-view { flex: 1; overflow: hidden; }
+.ticker-track { display: inline-flex; white-space: nowrap; padding: 13px 0; animation: tickerMove 40s linear infinite; }
+.ticker-track span { display: inline-flex; align-items: center; color: var(--text); font-size: 13.5px; letter-spacing: .3px; padding: 0 18px; }
+.ticker-track span::after { content: "•"; margin-left: 18px; color: var(--gold); }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+@keyframes tickerMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
 .card-meta { display: flex; gap: 16px; color: #eaf0f8; font-size: 12px; letter-spacing: .5px; margin-bottom: 10px; flex-wrap: wrap; }
 .card-meta span { display: flex; align-items: center; gap: 6px; }
 .card-title { font-family: var(--serif); font-weight: 500; font-size: 1.6rem; line-height: 1.1; }
@@ -273,7 +283,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .consultant-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .consultant { text-align: center; }
 .consultant-photo { aspect-ratio: 3/4; border-radius: var(--radius); margin-bottom: 16px; background: linear-gradient(150deg, #211c17, #0c0b0a); display: grid; place-items: center; position: relative; overflow: hidden; border: 1px solid var(--line-soft); transition: transform .4s var(--ease); }
-.consultant-photo::after { content: attr(data-initial); color: var(--gold); font-family: var(--serif); font-size: 2.6rem; }
+.consultant-photo::after { content: ""; position: absolute; width: 44%; height: 44%; opacity: .65; background: no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239fb3cf'><circle cx='12' cy='8' r='4.2'/><path d='M3.5 21a8.5 8.5 0 0 1 17 0z'/></svg>"); }
 .consultant:hover .consultant-photo { transform: translateY(-6px); border-color: var(--line); }
 .consultant h3 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; }
 .consultant p { color: var(--muted); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
