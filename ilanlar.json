@@ -2,7 +2,9 @@
   "ilanlar": [
     {
       "baslik": "ÜSKÜDAR AZİZ MAHMUD HÜDAYİDE 3+1",
-      "konum": "ÜSKÜDAR",
+      "il": "",
+      "ilce": "ÜSKÜDAR",
+      "mahalle": "ÜSKÜDAR",
       "fiyat": 7500000,
       "islem": "satilik",
       "tur": "konut",
@@ -25,11 +27,29 @@
       "vip": false,
       "aciklama": "ÜSKÜDAR’DA YENİ BİNADA 3+1 TERS DUBLEKS\n\n\n\nÜsküdar İskele’ye sadece 5 dakika yürüme mesafesinde\n\n\n\n3+1 Ters Dubleks\n\n️ Açık Amerikan mutfak\n\nKombi ısıtma sistemi\n\nAsansörlü yeni bina\n\n\n\nMerkezi konumu sayesinde Marmaray, vapur ve toplu taşıma noktalarına kolay ulaşım imkânı sunar.\n\nHem oturum hem yatırım için ideal bir fırsat.\n\n\n\nDetaylı bilgi ve randevu için iletişime geçebilirsiniz.",
       "ozellikler": [],
+      "konum": "ÜSKÜDAR, ÜSKÜDAR",
       "danisman_tel": "+905323056656",
       "id": "uskudar-azi-z-mahmud-hudayi-de-3-1-7211",
       "fotolar": [
         "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/1.jpg",
-        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/2.jpg"
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/2.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-1.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-2.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-3.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-4.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-5.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-6.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-7.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-8.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-9.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-10.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-11.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-12.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-13.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-14.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-15.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-16.jpg",
+        "assets/ilanlar/uskudar-azi-z-mahmud-hudayi-de-3-1-7211/mql8f2mi-17.jpg"
       ]
     },
     {
