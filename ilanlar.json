@@ -1,6 +1,42 @@
 {
   "ilanlar": [
     {
+      "baslik": "Üsküdar'da Boğaz Manzaralı dubleks",
+      "konum": "üsküdar",
+      "fiyat": 85,
+      "islem": "satilik",
+      "tur": "konut",
+      "danisman": "Aykan Uyanıktürk",
+      "oda": "3+2",
+      "banyo": "",
+      "m2": 185,
+      "kat": "5/5",
+      "isitma": "",
+      "aidat": "",
+      "durum": "",
+      "cephe": "",
+      "otopark": "kapalı",
+      "asansor": "",
+      "tapu": "",
+      "krediye": "",
+      "esyali": "",
+      "kullanim": "",
+      "harita_arama": "üsküdar sultantepe",
+      "vip": false,
+      "aciklama": "",
+      "ozellikler": [
+        "yeni binada",
+        "Boğaz manzaralı",
+        "teraslı",
+        "lüks dubleks"
+      ],
+      "danisman_tel": "+905323056656",
+      "id": "uskudar-da-bogaz-manzarali-dubleks-9155",
+      "fotolar": [
+        "assets/ilanlar/uskudar-da-bogaz-manzarali-dubleks-9155/1.jpg"
+      ]
+    },
+    {
       "id": "suadiye-3-1",
       "baslik": "Suadiye'de Bağdat Caddesine 3. Binada 3+1",
       "konum": "Suadiye, Kadıköy",
