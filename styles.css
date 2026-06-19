@@ -411,6 +411,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .why-card h3 { font-family: var(--serif); font-weight: 600; font-size: 1.45rem; margin-bottom: 8px; }
 .why-card p { color: var(--muted); font-size: .95rem; line-height: 1.6; }
 
+/* Müşteri yorumları */
+.reviews { background: var(--bg-2); }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.review { background: var(--bg-3); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 28px 26px; display: flex; flex-direction: column; gap: 14px; }
+.review .stars { color: #f3c34e; letter-spacing: 3px; font-size: 15px; }
+.review blockquote { font-family: var(--serif); font-size: 1.12rem; line-height: 1.5; color: var(--text); }
+.review figcaption { margin-top: auto; }
+.review figcaption b { display: block; font-family: var(--serif); font-size: 1.1rem; color: var(--gold); }
+.review figcaption span { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+@media (max-width: 1024px) { .reviews-grid { grid-template-columns: 1fr; } }
+
 /* ============================================================
    BLOG
    ============================================================ */
