@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=34" />
+  <link rel="stylesheet" href="styles.css?v=35" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 <body class="detail-page">
@@ -19,7 +19,7 @@
   <header class="site-header scrolled" id="header">
     <div class="header-inner">
       <a href="index.html" class="logo" aria-label="Forza Gayrimenkul ana sayfa">
-        <img class="logo-img" src="assets/logo-dark.png?v=34" alt="Forza Gayrimenkul" />
+        <img class="logo-img" src="assets/logo-dark.png?v=35" alt="Forza Gayrimenkul" />
       </a>
       <nav class="main-nav" id="mainNav" aria-label="Ana menü">
         <a href="index.html#anasayfa">Ana Sayfa</a>
@@ -88,7 +88,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col">
-        <a href="index.html" class="logo footer-logo"><img class="logo-img" src="assets/logo-dark.png?v=34" alt="Forza Emlak" /></a>
+        <a href="index.html" class="logo footer-logo"><img class="logo-img" src="assets/logo-dark.png?v=35" alt="Forza Emlak" /></a>
         <p class="footer-slogan">Prestijli Gayrimenkuller, Güvenilir Sonuçlar</p>
         <p>1999'dan günümüze güvenilir gayrimenkul danışmanlığı. İstanbul Anadolu Yakası'nda konut, yatırım, ticari gayrimenkul ve arsa.</p>
       </div>
@@ -197,7 +197,7 @@
       var specs = [
         ["Emlak Tipi", (il.islem==="kiralik"?"Kiralık ":"Satılık ")+(il.tur==="ofis"?"Ofis":il.tur==="arsa"?"Arsa":il.tur==="villa"?"Villa":"Daire")],
         ["Oda Sayısı", il.oda], ["Net m²", il.m2?il.m2+" m²":""], ["Kat", il.kat],
-        ["Yapının Durumu", il.durum], ["Asansör", il.asansor], ["Tapu Durumu", il.tapu],
+        ["Yapım Yılı / Bina Yaşı", il.yil], ["Yapının Durumu", il.durum], ["Asansör", il.asansor], ["Tapu Durumu", il.tapu],
         ["Krediye Uygun", il.krediye], ["Banyo", il.banyo], ["Isıtma", il.isitma],
         ["Aidat", il.aidat], ["Cephe", il.cephe], ["Otopark", il.otopark],
         ["Kullanım Durumu", il.kullanim], ["Eşyalı", il.esyali]
@@ -223,6 +223,6 @@
     }).catch(function(){ document.getElementById("detailContent").style.display="none"; document.getElementById("notFound").hidden=false; });
   })();
   </script>
-  <script src="script.js?v=34"></script>
+  <script src="script.js?v=35"></script>
 </body>
 </html>
