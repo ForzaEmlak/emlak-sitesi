@@ -94,30 +94,41 @@
               <div><label>Danışman</label><select name="danisman"><option>Aykan Uyanıktürk</option><option>Aydan Münevver</option><option>Hatice Dede</option><option>Barış Aydemir</option></select></div>
             </div>
             <div class="row3">
-              <div><label>Oda</label><input name="oda" placeholder="3+1" /></div>
-              <div><label>Banyo</label><input name="banyo" placeholder="2" /></div>
+              <div><label>Oda</label><input name="oda" list="dl-oda" placeholder="3+1" /></div>
+              <div><label>Banyo</label><input name="banyo" list="dl-banyo" placeholder="2" /></div>
               <div><label>m² (net)</label><input name="m2" type="number" placeholder="100" /></div>
             </div>
             <div class="row3">
               <div><label>Kat</label><input name="kat" placeholder="10 / 12" /></div>
-              <div><label>Isıtma</label><input name="isitma" placeholder="Kombi" /></div>
+              <div><label>Isıtma</label><input name="isitma" list="dl-isitma" placeholder="Kombi (Doğalgaz)" /></div>
               <div><label>Aidat</label><input name="aidat" placeholder="2.000 ₺" /></div>
             </div>
             <div class="row3">
-              <div><label>Durum</label><input name="durum" placeholder="Sıfır" /></div>
-              <div><label>Cephe</label><input name="cephe" placeholder="Güney" /></div>
-              <div><label>Otopark</label><input name="otopark" placeholder="Açık" /></div>
+              <div><label>Durum</label><input name="durum" list="dl-durum" placeholder="Sıfır" /></div>
+              <div><label>Cephe</label><input name="cephe" list="dl-cephe" placeholder="Güney" /></div>
+              <div><label>Otopark</label><input name="otopark" list="dl-otopark" placeholder="Açık" /></div>
             </div>
             <div class="row3">
-              <div><label>Asansör</label><input name="asansor" placeholder="Var" /></div>
-              <div><label>Tapu</label><input name="tapu" placeholder="Kat Mülkiyeti" /></div>
-              <div><label>Krediye Uygun</label><input name="krediye" placeholder="Evet" /></div>
+              <div><label>Asansör</label><input name="asansor" list="dl-asansor" placeholder="Var" /></div>
+              <div><label>Tapu</label><input name="tapu" list="dl-tapu" placeholder="Kat Mülkiyeti" /></div>
+              <div><label>Krediye Uygun</label><input name="krediye" list="dl-evethayir" placeholder="Evet" /></div>
             </div>
             <div class="row3">
-              <div><label>Eşyalı</label><input name="esyali" placeholder="Hayır" /></div>
-              <div><label>Kullanım</label><input name="kullanim" placeholder="Boş" /></div>
+              <div><label>Eşyalı</label><input name="esyali" list="dl-evethayir" placeholder="Hayır" /></div>
+              <div><label>Kullanım</label><input name="kullanim" list="dl-kullanim" placeholder="Boş" /></div>
               <div><label>Yapım Yılı / Bina Yaşı</label><input name="yil" placeholder="2015 / 5 yaşında" /></div>
             </div>
+            <!-- Açılır seçenek listeleri (yine de elle yazılabilir) -->
+            <datalist id="dl-oda"><option>1+0</option><option>1+1</option><option>2+1</option><option>3+1</option><option>3+2</option><option>4+1</option><option>4+2</option><option>5+1</option><option>5+2</option></datalist>
+            <datalist id="dl-banyo"><option>1</option><option>2</option><option>3</option><option>4</option></datalist>
+            <datalist id="dl-isitma"><option>Kombi (Doğalgaz)</option><option>Merkezi</option><option>Merkezi (Pay Ölçer)</option><option>Yerden Isıtma</option><option>Klima</option><option>Soba</option><option>Yok</option></datalist>
+            <datalist id="dl-durum"><option>Sıfır</option><option>İkinci El</option><option>Yapım Aşamasında</option></datalist>
+            <datalist id="dl-cephe"><option>Kuzey</option><option>Güney</option><option>Doğu</option><option>Batı</option><option>Kuzey-Güney</option><option>Doğu-Batı</option><option>Güney-Batı</option><option>Kuzey-Doğu</option></datalist>
+            <datalist id="dl-otopark"><option>Açık</option><option>Kapalı</option><option>Açık & Kapalı</option><option>Yok</option></datalist>
+            <datalist id="dl-asansor"><option>Var</option><option>Yok</option></datalist>
+            <datalist id="dl-tapu"><option>Kat Mülkiyeti</option><option>Kat İrtifakı</option><option>Hisseli Tapu</option><option>Arsa Tapulu</option><option>Müstakil Tapulu</option></datalist>
+            <datalist id="dl-evethayir"><option>Evet</option><option>Hayır</option></datalist>
+            <datalist id="dl-kullanim"><option>Boş</option><option>Kiracılı</option><option>Mülk Sahibi Oturuyor</option></datalist>
             <label>Adres (harita için)</label>
             <input name="harita_arama" placeholder="Suadiye Bağdat Caddesi Kadıköy İstanbul" />
             <label>Öne çıkar (★ Ayrıcalıklı rozeti)</label>

@@ -337,7 +337,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .footer-col a:hover { color: var(--gold); padding-left: 4px; }
 .footer-social { display: flex; gap: 12px; margin-top: 20px; }
 .footer-social a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); color: var(--muted); display: grid; place-items: center; margin: 0; transition: all .25s; }
-.footer-social a:hover { color: var(--gold); border-color: var(--gold); transform: translateY(-2px); padding-left: 0; }
+.footer-social a[aria-label="Instagram"] { color: #e1306c; border-color: rgba(225,48,108,.5); }
+.footer-social a[aria-label="WhatsApp"] { color: #25D366; border-color: rgba(37,211,102,.5); }
+.footer-social a:hover { transform: translateY(-2px); padding-left: 0; filter: brightness(1.15); }
 .footer-bottom { border-top: 1px solid var(--line-soft); padding: 22px 0; }
 .footer-bottom p { font-size: .82rem; color: var(--muted-2); text-align: center; }
 .footer-bottom .credit {
@@ -357,13 +359,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .ig-float, .wa-float {
   position: fixed; right: 22px; z-index: 90;
   width: 54px; height: 54px; border-radius: 50%;
-  background: var(--navy); color: #ffffff;
+  color: #ffffff;
   display: grid; place-items: center; box-shadow: 0 12px 30px rgba(0,0,0,.4);
-  transition: transform .3s var(--ease), background .3s var(--ease);
+  transition: transform .3s var(--ease), filter .3s var(--ease);
 }
-.wa-float { bottom: 22px; }
-.ig-float { bottom: 86px; }
-.ig-float:hover, .wa-float:hover { transform: translateY(-3px) scale(1.06); background: #1a5099; }
+.wa-float { bottom: 22px; background: #25D366; }
+.ig-float { bottom: 86px; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.ig-float:hover, .wa-float:hover { transform: translateY(-3px) scale(1.06); filter: brightness(1.08); }
 
 /* ============================================================
    HAKKIMIZDA (alternating)
