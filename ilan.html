@@ -126,7 +126,35 @@
       var il = list.find(function(x){ return x.id === id; }) || (id ? null : list[0]);
       if (!il) { document.getElementById("detailContent").style.display="none"; document.getElementById("notFound").hidden=false; return; }
 
-      document.title = il.baslik + " | Forza Gayrimenkul";
+      // --- SEO: her ilana özel başlık + meta ---
+      (function(){
+        var turAd = il.tur==="ofis"?"Ofis":il.tur==="arsa"?"Arsa":il.tur==="villa"?"Villa":"Daire";
+        var islemAd = il.islem==="kiralik"?"Kiralık":"Satılık";
+        var yer = [il.mahalle, il.ilce, il.il].filter(Boolean).join(", ");
+        var t = il.baslik.trim() + " | " + islemAd + " " + turAd + " | Forza Gayrimenkul";
+        document.title = t;
+        var dsc = (yer ? yer + "'de " : "") + islemAd.toLowerCase() + " " + (il.oda?il.oda+" ":"") + turAd.toLowerCase() +
+                  (il.m2?" · "+il.m2+" m²":"") + " · " + priceText(il.fiyat) +
+                  ". Forza Gayrimenkul güvencesiyle detaylar ve iletişim.";
+        dsc = dsc.replace(/\s+/g," ").trim();
+        var url = "https://forzagayrimenkul.com.tr/ilan.html?id=" + encodeURIComponent(il.id);
+        var img = (il.fotolar && il.fotolar[0]) ? "https://forzagayrimenkul.com.tr/" + il.fotolar[0] : "https://forzagayrimenkul.com.tr/assets/logo-dark.png";
+        function meta(sel, attr, val){
+          var el = document.head.querySelector(sel);
+          if(!el){ el=document.createElement("meta"); if(sel.indexOf("property")>-1){el.setAttribute("property",sel.match(/"([^"]+)"/)[1]);} else {el.setAttribute("name",sel.match(/"([^"]+)"/)[1]);} document.head.appendChild(el); }
+          el.setAttribute(attr, val);
+        }
+        meta('meta[name="description"]', "content", dsc);
+        meta('meta[property="og:type"]', "content", "article");
+        meta('meta[property="og:title"]', "content", t);
+        meta('meta[property="og:description"]', "content", dsc);
+        meta('meta[property="og:url"]', "content", url);
+        meta('meta[property="og:image"]', "content", img);
+        meta('meta[property="og:site_name"]', "content", "Forza Gayrimenkul");
+        var can = document.head.querySelector('link[rel="canonical"]');
+        if(!can){ can=document.createElement("link"); can.setAttribute("rel","canonical"); document.head.appendChild(can); }
+        can.setAttribute("href", url);
+      })();
 
       // Galeri
       var fotolar = il.fotolar && il.fotolar.length ? il.fotolar : [];
